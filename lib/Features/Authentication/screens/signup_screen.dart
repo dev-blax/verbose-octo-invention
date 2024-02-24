@@ -30,7 +30,8 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+        body: Expanded(
+      child: Stack(
         children: [
           Container(
             decoration: const BoxDecoration(
@@ -39,7 +40,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     fit: BoxFit.cover)),
           ),
           Positioned(
-              bottom: 50,
+              top: 50,
               left: 0,
               right: 0,
               child: Padding(
@@ -138,7 +139,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                         Text(
                                           'OR',
                                           style: TextStyle(
-                                              fontWeight: FontWeight.w700),
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white),
                                         ),
                                         Flexible(
                                             child: Divider(
@@ -424,7 +426,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ))
         ],
       ),
-    );
+    ));
   }
 
   void submitForm() async {

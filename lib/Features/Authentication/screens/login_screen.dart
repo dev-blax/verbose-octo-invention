@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Container(
-                                          padding: EdgeInsets.all(5),
+                                          padding: const EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                               color: Colors.white,
                                               borderRadius:
@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               'assets/icons/icons8-google-48.png'),
                                         ),
                                         Container(
-                                          padding: EdgeInsets.all(5),
+                                          padding: const EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                               color: Colors.white,
                                               borderRadius:
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               'assets/icons/icons8-tiktok-48.png'),
                                         ),
                                         Container(
-                                          padding: EdgeInsets.all(5),
+                                          padding: const EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                               color: Colors.white,
                                               borderRadius:
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               'assets/icons/icons8-facebook-48.png'),
                                         ),
                                         Container(
-                                          padding: EdgeInsets.all(5),
+                                          padding: const EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                               color: Colors.white,
                                               borderRadius:
@@ -134,7 +134,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         Text(
                                           'OR',
                                           style: TextStyle(
-                                              fontWeight: FontWeight.w700),
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white),
                                         ),
                                         Flexible(
                                             child: Divider(
@@ -153,7 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w800,
-                                          fontSize: 20),
+                                          fontSize: 16),
+                                      textAlign: TextAlign.center,
                                     ),
                                     const SizedBox(
                                       height: 20,
@@ -229,26 +231,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                     // forgot password
 
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      child: RichText(
-                                        text: TextSpan(
-                                              text: 'Forgot Password',
-                                              style: const TextStyle(
-                                                  decoration:
-                                                      TextDecoration.underline,
-                                                  color: Colors.blue),
-                                              recognizer: TapGestureRecognizer()
-                                                ..onTap = () {
-                                                  // to register
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              const ForgotPassword()));
-                                                })
-                                        )
-                                    ),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: RichText(
+                                            text: TextSpan(
+                                                text: 'Forgot Password',
+                                                style: const TextStyle(
+                                                    decoration: TextDecoration
+                                                        .underline,
+                                                    color: Colors.blue),
+                                                recognizer:
+                                                    TapGestureRecognizer()
+                                                      ..onTap = () {
+                                                        // to register
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        const ForgotPassword()));
+                                                      }))),
 
                                     const SizedBox(
                                       height: 20,
@@ -324,8 +326,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                           builder: (context) =>
                                                               const SignupScreen()));
                                                 })
-                                        ])
-                                        )
+                                        ]))
                                   ],
                                 ),
                               ),
@@ -347,7 +348,7 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = true;
       });
 
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 5));
 
       setState(() {
         isLoading = false;

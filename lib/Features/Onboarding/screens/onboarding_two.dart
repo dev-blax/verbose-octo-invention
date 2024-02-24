@@ -2,19 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 
-class OnboardingOne extends StatefulWidget {
-  const OnboardingOne({super.key});
+class OnboardingTwo extends StatefulWidget {
+  const OnboardingTwo({super.key});
 
   @override
-  State<OnboardingOne> createState() => _OnboardingOneState();
+  State<OnboardingTwo> createState() => _OnboardingTwoState();
 }
 
-class _OnboardingOneState extends State<OnboardingOne> {
+class _OnboardingTwoState extends State<OnboardingTwo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +20,7 @@ class _OnboardingOneState extends State<OnboardingOne> {
           Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-              image:
-                  AssetImage('assets/images/lady-in-red-eating-ice-cream.jpg'),
+              image: AssetImage('assets/images/dinner-2.jpg'),
               fit: BoxFit.cover,
             )),
           ),
@@ -52,7 +48,7 @@ class _OnboardingOneState extends State<OnboardingOne> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Discover Your World',
+                    'Beyond Boundaries',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25,
@@ -62,7 +58,7 @@ class _OnboardingOneState extends State<OnboardingOne> {
                     height: 20,
                   ),
                   Text(
-                    'Unleash endless possibilities with our social hub and seamless food delivery at your fingertips',
+                    'Build memories, share moments, and indulge in extraordinary activities. \n - It\'s all about connection',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,

@@ -1,20 +1,15 @@
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 
-class OnboardingOne extends StatefulWidget {
-  const OnboardingOne({super.key});
+class OnboardingThree extends StatefulWidget {
+  const OnboardingThree({super.key});
 
   @override
-  State<OnboardingOne> createState() => _OnboardingOneState();
+  State<OnboardingThree> createState() => _OnboardingThreeState();
 }
 
-class _OnboardingOneState extends State<OnboardingOne> {
+class _OnboardingThreeState extends State<OnboardingThree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +18,7 @@ class _OnboardingOneState extends State<OnboardingOne> {
           Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-              image:
-                  AssetImage('assets/images/lady-in-red-eating-ice-cream.jpg'),
+              image: AssetImage('assets/images/happy-couple.jpg'),
               fit: BoxFit.cover,
             )),
           ),
@@ -52,7 +46,7 @@ class _OnboardingOneState extends State<OnboardingOne> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Discover Your World',
+                    'Curated Experience',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25,
@@ -62,7 +56,7 @@ class _OnboardingOneState extends State<OnboardingOne> {
                     height: 20,
                   ),
                   Text(
-                    'Unleash endless possibilities with our social hub and seamless food delivery at your fingertips',
+                    'Personalized experience that match your taste - whether it\'s a local hostpot or a hidden gem',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
