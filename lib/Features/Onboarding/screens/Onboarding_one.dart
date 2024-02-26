@@ -1,11 +1,6 @@
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
+import 'package:explore_larosa_mobile/Components/onboarding_next_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:iconsax/iconsax.dart';
 
 class OnboardingOne extends StatefulWidget {
   const OnboardingOne({super.key});
@@ -73,51 +68,7 @@ class _OnboardingOneState extends State<OnboardingOne> {
             ),
           ),
 
-          Positioned(
-              bottom: 20,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text('progress indicator'),
-                    Container(
-                      decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                              colors: [Color(0xff34a4f9), Color(0xff0a1282)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight),
-                          borderRadius: BorderRadius.circular(20)),
-                      height: 65,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            elevation: 0, backgroundColor: Colors.transparent),
-                        onPressed: () {},
-                        child: const Row(
-                          children: [
-                            Text(
-                              'NEXT',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Icon(
-                              Iconsax.arrow_circle_right,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ))
+          const OnboardingNextButton()
         ],
       ),
     );

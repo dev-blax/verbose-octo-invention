@@ -1,8 +1,11 @@
 import 'package:explore_larosa_mobile/Features/Authentication/screens/business_signup.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/login_screen.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/signup_screen.dart';
-import 'package:explore_larosa_mobile/Features/Onboarding/screens/Onboarding_one.dart';
+import 'package:explore_larosa_mobile/Features/Feeds/screens/home_screen.dart';
+import 'package:explore_larosa_mobile/Features/Onboarding/screens/onboarding_one.dart';
 import 'package:explore_larosa_mobile/Features/Onboarding/screens/account_type.dart';
+import 'package:explore_larosa_mobile/Features/Onboarding/screens/interests.dart';
+import 'package:explore_larosa_mobile/Features/Onboarding/screens/onboarding_screen.dart';
 import 'package:explore_larosa_mobile/Features/Onboarding/screens/onboarding_three.dart';
 import 'package:explore_larosa_mobile/Features/Onboarding/screens/onboarding_two.dart';
 import 'package:explore_larosa_mobile/utils/theme/theme.dart';
@@ -18,7 +21,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: LarosaAppTheme.lightTheme,
       darkTheme: LarosaAppTheme.darkTheme,
-      home: BusinessSignupScreen(),
+      home: const OnboardingScreen(),
     );
   }
 }
