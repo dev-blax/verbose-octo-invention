@@ -1,8 +1,6 @@
 import 'dart:ui';
 import 'package:explore_larosa_mobile/Components/onboarding_next_button.dart';
-import 'package:explore_larosa_mobile/Features/Onboarding/controllers/onboarding_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 class OnboardingThree extends StatefulWidget {
   const OnboardingThree({super.key});

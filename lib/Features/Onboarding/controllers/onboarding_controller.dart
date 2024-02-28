@@ -1,7 +1,6 @@
-import 'package:explore_larosa_mobile/Features/Authentication/screens/login_screen.dart';
+import 'package:explore_larosa_mobile/Features/Onboarding/screens/account_type.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 
 class OnboardingController extends GetxController {
   static OnboardingController get instance => Get.find();
@@ -21,10 +20,13 @@ class OnboardingController extends GetxController {
 
   void nextPage() {
     if (currentPageIndex.value == 2) {
-      Get.to(const LoginScreen());
+      print('going to login screen because ${currentPageIndex.value}');
+      Get.to(const AccountType());
     } else {
-      int page = currentPageIndex.value + 1;
-      pageController.jumpToPage(page);
+      print('previous page ${currentPageIndex.value}');
+      currentPageIndex.value = currentPageIndex.value + 1;
+      print('previous page ${currentPageIndex.value}');
+      pageController.jumpToPage(currentPageIndex.value);
     }
   }
 

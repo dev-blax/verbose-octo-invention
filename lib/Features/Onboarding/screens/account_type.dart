@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:explore_larosa_mobile/Features/Authentication/screens/login_screen.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/signup_screen.dart';
+import 'package:explore_larosa_mobile/Features/Onboarding/controllers/account_type_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class AccountType extends StatefulWidget {
@@ -54,10 +56,8 @@ class _AccountTypeState extends State<AccountType> {
               right: 20,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginScreen()));
+                  // AccountTypeController.instance.toSignIn();
+                  Get.put(AccountTypeController.instance.toSignIn());
                 },
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -139,7 +139,9 @@ class _AccountTypeState extends State<AccountType> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           elevation: 0, backgroundColor: Colors.transparent),
-                      onPressed: () {},
+                      onPressed: () {
+                        AccountTypeController.instance.toBusinessRegistration();
+                      },
                       child: const Text(
                         'Business Account',
                         style: TextStyle(
@@ -165,10 +167,7 @@ class _AccountTypeState extends State<AccountType> {
                       style: ElevatedButton.styleFrom(
                           elevation: 0, backgroundColor: Colors.transparent),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignupScreen()));
+                        AccountTypeController.instance.toPersonalRegistration();
                       },
                       child: const Text(
                         'Personal Account',
