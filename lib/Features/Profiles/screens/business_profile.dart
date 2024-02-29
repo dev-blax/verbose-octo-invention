@@ -14,7 +14,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Wrap(
         children: [
           Stack(
             clipBehavior: Clip.none,
@@ -239,6 +239,38 @@ class _BusinessProfileState extends State<BusinessProfile> {
               ],
             ),
           ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 0, backgroundColor: LarosaColors.black),
+                  onPressed: () {},
+                  child: const Text(
+                    'Posts',
+                    style: TextStyle(color: LarosaColors.light),
+                  )),
+              ElevatedButton(onPressed: () {}, child: const Text('Services')),
+              ElevatedButton(onPressed: () {}, child: const Text('About')),
+            ],
+          ),
+
+          GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, crossAxisSpacing: 8, mainAxisSpacing: 8),
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text('Card $index'),
+                    subtitle: Text('Description of Card $index'),
+                    onTap: () {
+                      // Handle card tap
+                      print('Tapped on Card $index');
+                    },
+                  ),
+                );
+              })
 
           // Tabs
         ],
