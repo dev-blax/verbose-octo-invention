@@ -1,3 +1,4 @@
+import 'package:explore_larosa_mobile/Components/liked_heart.dart';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:explore_larosa_mobile/utils/constants/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Wrap(
+      body: ListView(
         children: [
           Stack(
             clipBehavior: Clip.none,
@@ -175,7 +176,10 @@ class _BusinessProfileState extends State<BusinessProfile> {
                         ),
                         Text(
                           'Follow',
-                          style: TextStyle(color: LarosaColors.primary),
+                          style: TextStyle(
+                              color: LarosaColors.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
                         )
                       ],
                     ),
@@ -200,7 +204,10 @@ class _BusinessProfileState extends State<BusinessProfile> {
                         ),
                         Text(
                           'Chat',
-                          style: TextStyle(color: LarosaColors.primary),
+                          style: TextStyle(
+                              color: LarosaColors.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
                         )
                       ],
                     ),
@@ -229,8 +236,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
                           width: 4,
                         ),
                         Text(
-                          'Follow',
-                          style: TextStyle(color: Colors.white),
+                          'Share',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
                         )
                       ],
                     ),
@@ -240,41 +250,149 @@ class _BusinessProfileState extends State<BusinessProfile> {
             ),
           ),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0, backgroundColor: LarosaColors.black),
-                  onPressed: () {},
-                  child: const Text(
-                    'Posts',
-                    style: TextStyle(color: LarosaColors.light),
-                  )),
-              ElevatedButton(onPressed: () {}, child: const Text('Services')),
-              ElevatedButton(onPressed: () {}, child: const Text('About')),
-            ],
-          ),
-
-          GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, crossAxisSpacing: 8, mainAxisSpacing: 8),
-              itemBuilder: (context, index) {
-                return Card(
-                  child: ListTile(
-                    title: Text('Card $index'),
-                    subtitle: Text('Description of Card $index'),
-                    onTap: () {
-                      // Handle card tap
-                      print('Tapped on Card $index');
-                    },
-                  ),
-                );
-              })
-
-          // Tabs
+          const SizedBox(height: 500, child: TabTest()),
         ],
       ),
+    );
+  }
+}
+
+class CardGrid extends StatelessWidget {
+  const CardGrid({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisSpacing: 5,
+      mainAxisSpacing: 5,
+      crossAxisCount: 2,
+      physics:
+          const NeverScrollableScrollPhysics(), // to disable GridView's scrolling
+      shrinkWrap: true, // You won't see infinite size error
+      children: const <Widget>[
+        BusinssProfilePostCard(
+          imagePath: 'assets/images/mik4.jpg',
+          isLiked: true,
+        ),
+        BusinssProfilePostCard(
+          imagePath: 'assets/images/milk6.jpg',
+          isLiked: false,
+        ),
+        BusinssProfilePostCard(
+          imagePath: 'assets/images/milkshake1.jpg',
+          isLiked: false,
+        ),
+        BusinssProfilePostCard(
+          imagePath: 'assets/images/hotel-wine.jpg',
+          isLiked: true,
+        ),
+        BusinssProfilePostCard(
+          imagePath: 'assets/images/milk7.jpg',
+          isLiked: true,
+        ),
+        BusinssProfilePostCard(
+          imagePath: 'assets/images/milkshake3.jpg',
+          isLiked: true,
+        ),
+      ],
+    );
+  }
+}
+
+class TabTest extends StatelessWidget {
+  const TabTest({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 3,
+      child: Column(
+        children: [
+          Container(
+            constraints: const BoxConstraints.expand(height: 50),
+            child: const TabBar(
+              tabs: [
+                Tab(text: 'Posts'),
+                Tab(text: 'Services'),
+                Tab(text: 'About'),
+              ],
+            ),
+          ),
+          const Expanded(
+            child: TabBarView(
+              children: [
+                // Content for Tab 1
+                CardGrid(),
+
+                // Content for Tab 2
+                Center(child: Text('Tab 2 content')),
+
+                // Content for Tab 3
+                Center(child: Text('Tab 3 content')),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BusinssProfilePostCard extends StatelessWidget {
+  final bool isLiked;
+  final String imagePath;
+  const BusinssProfilePostCard(
+      {super.key, required this.isLiked, required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Image.asset(
+          height: 240,
+          width: MediaQuery.of(context).size.width / 2 - 5,
+          imagePath,
+          fit: BoxFit.cover,
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            height: 120,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+              LarosaColors.black.withOpacity(0.6),
+              Colors.transparent
+            ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
+          ),
+        ),
+
+        // actions
+        Positioned(
+            bottom: 5,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                isLiked
+                    ? const LikeHeart()
+                    : const Icon(
+                        Iconsax.heart,
+                        color: Colors.white,
+                      ),
+                const Icon(
+                  Iconsax.message,
+                  color: LarosaColors.light,
+                ),
+                const Icon(
+                  Iconsax.send_2,
+                  color: LarosaColors.light,
+                ),
+              ],
+            ))
+      ],
     );
   }
 }

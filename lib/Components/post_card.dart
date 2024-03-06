@@ -1,6 +1,8 @@
+import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PostCard extends StatefulWidget {
   final String username;
@@ -25,6 +27,8 @@ class _PostCardState extends State<PostCard> {
   bool isLiked = false;
   bool isStarred = false;
 
+  final String iconName = 'assets/icons/SolarHeartAngleBold.svg';
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,22 +47,26 @@ class _PostCardState extends State<PostCard> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                onPressed: () {
-                  setState(() {
-                    isLiked = !isLiked;
-                  });
-                },
-                icon: !isLiked
-                    ? const Icon(
-                        Iconsax.heart,
-                        size: 40,
-                      )
-                    : const Icon(
-                        Iconsax.heart5,
-                        color: Colors.red,
-                        size: 40,
-                      ),
-              ),
+                  onPressed: () {
+                    setState(() {
+                      isLiked = !isLiked;
+                    });
+                  },
+                  icon: !isLiked
+
+                      // outlinedLike button
+                      ? SvgPicture.asset(LarosaImages.outlineHeartIconPth,
+                          width: 40,
+                          height: 40,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.black, BlendMode.srcIn),
+                          semanticsLabel: 'Like icon')
+                      : SvgPicture.asset(iconName,
+                          width: 40,
+                          height: 40,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.red, BlendMode.srcIn),
+                          semanticsLabel: 'Like icon')),
               IconButton(
                   onPressed: () {
                     setState(() {
