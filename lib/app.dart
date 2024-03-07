@@ -13,6 +13,7 @@ import 'package:explore_larosa_mobile/Features/Onboarding/screens/onboarding_thr
 import 'package:explore_larosa_mobile/Features/Onboarding/screens/onboarding_two.dart';
 import 'package:explore_larosa_mobile/Features/Profiles/screens/business_profile.dart';
 import 'package:explore_larosa_mobile/Features/Profiles/screens/verified_artist_profile.dart';
+import 'package:explore_larosa_mobile/core.dart';
 import 'package:explore_larosa_mobile/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: LarosaAppTheme.lightTheme,
       darkTheme: LarosaAppTheme.darkTheme,
-      home: const HomeScreen(),
+      home: const Core(),
     );
   }
 }

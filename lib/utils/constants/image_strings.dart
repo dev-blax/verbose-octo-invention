@@ -6,4 +6,12 @@ class LarosaImages {
   static const String boldHeartIconPth = "assets/icons/SolarHeartAngleBold.svg";
 
   static const String boldFireballIconPath = 'assets/icons/IonFireball.svg';
+
+  static const String notificationIconPath =
+      'assets/icons/MaterialSymbolsLightNotificationsOutlineSharp.svg';
+
+  static const String accountIconPath =
+      'assets/icons/MaterialSymbolsLightAccountCircleOutline.svg';
+
+  static const String starIconPath = 'assets/icons/MaterialSymbolsKidStar.svg';
 }
