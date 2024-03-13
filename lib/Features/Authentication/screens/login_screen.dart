@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:explore_larosa_mobile/Components/spiner.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/forgot_password.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/signup_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -162,34 +163,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
 
                                     // Username Input
-                                    TextFormField(
-                                      controller: usernamController,
-                                      validator: (value) {
-                                        if (value != null && value.isEmpty) {
-                                          return 'Please enter your Username';
-                                        }
-                                        return null;
-                                      },
-                                      style:
-                                          const TextStyle(color: Colors.black),
-                                      decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        prefixIcon: const Icon(
-                                          Iconsax.user_square,
-                                          color: Colors.grey,
-                                        ),
-                                        hintText: 'Username',
-                                        hintStyle:
-                                            const TextStyle(color: Colors.grey),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0),
-                                            borderSide: const BorderSide(
-                                                width: 0.0,
-                                                color: Colors.transparent)),
-                                      ),
-                                    ),
+                                    UsernameInput(
+                                        usernamController: usernamController),
                                     const SizedBox(
                                       height: 20,
                                     ),
@@ -229,28 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
 
                                     // forgot password
-
-                                    Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20),
-                                        child: RichText(
-                                            text: TextSpan(
-                                                text: 'Forgot Password',
-                                                style: const TextStyle(
-                                                    decoration: TextDecoration
-                                                        .underline,
-                                                    color: Colors.blue),
-                                                recognizer:
-                                                    TapGestureRecognizer()
-                                                      ..onTap = () {
-                                                        // to register
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        const ForgotPassword()));
-                                                      }))),
+                                    const ForgotPassword(),
 
                                     const SizedBox(
                                       height: 20,
@@ -283,10 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             ? null
                                             : () => submitForm(),
                                         child: isLoading
-                                            ? const SpinKitChasingDots(
-                                                color: Colors.white,
-                                                size: 25,
-                                              )
+                                            ? const Spinner()
                                             : const Center(
                                                 child: Text(
                                                   'LOGIN',
@@ -321,10 +272,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 ..onTap = () {
                                                   // to register
                                                   Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              const SignupScreen()));
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const SignupScreen(),
+                                                    ),
+                                                  );
                                                 })
                                         ]))
                                   ],
@@ -356,5 +309,70 @@ class _LoginScreenState extends State<LoginScreen> {
 
       print('success');
     }
+  }
+}
+
+class ForgotPassword extends StatelessWidget {
+  const ForgotPassword({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: RichText(
+        text: TextSpan(
+          text: 'Forgot Password',
+          style: const TextStyle(
+              decoration: TextDecoration.underline, color: Colors.blue),
+          recognizer: TapGestureRecognizer()
+            ..onTap = () {
+              // to register
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ForgotPassword()));
+            },
+        ),
+      ),
+    );
+  }
+}
+
+class UsernameInput extends StatelessWidget {
+  const UsernameInput({
+    super.key,
+    required this.usernamController,
+  });
+
+  final TextEditingController usernamController;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: usernamController,
+      validator: (value) {
+        if (value != null && value.isEmpty) {
+          return 'Please enter your Username';
+        }
+        return null;
+      },
+      style: const TextStyle(color: Colors.black),
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        prefixIcon: const Icon(
+          Iconsax.user_square,
+          color: Colors.grey,
+        ),
+        hintText: 'Username',
+        hintStyle: const TextStyle(color: Colors.grey),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide:
+                const BorderSide(width: 0.0, color: Colors.transparent)),
+      ),
+    );
   }
 }

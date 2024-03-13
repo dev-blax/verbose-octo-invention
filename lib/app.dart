@@ -25,6 +25,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(AccountTypeController());
     return GetMaterialApp(
+      defaultTransition: Transition.leftToRight,
       themeMode: ThemeMode.system,
       theme: LarosaAppTheme.lightTheme,
       darkTheme: LarosaAppTheme.darkTheme,

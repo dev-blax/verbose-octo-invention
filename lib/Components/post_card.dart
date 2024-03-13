@@ -47,10 +47,33 @@ class _PostCardState extends State<PostCard> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                  onPressed: () {
+                  onPressed: () async {
                     setState(() {
                       isLiked = !isLiked;
                     });
+                    //try {
+                    //   Map<String, String> headers = {
+                    //     "Accept": "application/json",
+                    //     "Access-Control-Allow-Origin": "*"
+                    //   };
+                    //   // var uri = Uri.http('192.168.1.3:8080', 'countries/all');
+                    //   // print('sending country request');
+
+                    //   // var response = await http.get(uri, headers: headers);
+                    //   // print(response);
+                    //   print('sending country request');
+
+                    //   final response = await http.post(
+                    //       Uri.http('192.168.1.46:8081', '/countries/all'),
+                    //       headers: headers);
+
+                    //   print('got response ${response.body}');
+                    //   setState(() {
+                    //     isLiked = !isLiked;
+                    //   });
+                    // } catch (e) {
+                    //   throw Exception(e);
+                    // }
                   },
                   icon: !isLiked
 
@@ -67,11 +90,15 @@ class _PostCardState extends State<PostCard> {
                           colorFilter: const ColorFilter.mode(
                               Colors.red, BlendMode.srcIn),
                           semanticsLabel: 'Like icon')),
+
+              // Star Button
               IconButton(
                   onPressed: () {
                     setState(() {
                       isStarred = !isStarred;
                     });
+
+                    // Get.defaultDialog();
                   },
                   icon: !isStarred
                       ? const Icon(
