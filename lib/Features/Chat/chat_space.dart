@@ -1,6 +1,5 @@
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ChatSpace extends StatefulWidget {
