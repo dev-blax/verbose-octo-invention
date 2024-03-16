@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:explore_larosa_mobile/Components/oauth_buttons.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/login_screen.dart';
+import 'package:explore_larosa_mobile/core.dart';
 import 'package:explore_larosa_mobile/utils/constants/links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'dart:ui';
 import 'package:http/http.dart' as http;
@@ -424,25 +428,35 @@ class _SignupScreenState extends State<SignupScreen> {
         "Accept": "application/json",
         "Access-Control-Allow-Origin": "*"
       };
+      // var headers = {
+      //   'Content-Type': 'application/json',
+      //   "Access-Control-Allow-Origin": "*"
+      // };
+
+      Map<String, dynamic> bodyContent = {
+        "accountTypeId": 1,
+        "username": usernamController.text,
+        "email": emailController.text,
+        "password": passwordController.text,
+        "name": nameController.text
+      };
 
       try {
-        print('sending countries request ');
+        print('sending reg request ');
         var uri = Uri.http(
           LarosaLinks.baseurl,
-          LarosaLinks.countriesEndpoint,
+          LarosaLinks.registrationEndpoint,
         );
-        var response = await http.post(uri, headers: headers, body: {
-          "accountTypeId": "1",
-          "username": "usernamController",
-          "email": "email@Controller.com",
-          "password": "passwordController",
-          "name": "jamesone"
-        });
+        var response = await http.post(uri,
+            headers: headers, body: json.encode(bodyContent));
 
-        if (response.statusCode == 200) {
-          print('response ${response.body}');
+        if (response.statusCode == 201) {
+          //print('success');
+          Get.to(const Core());
+          // print('response ${response.body}');
         } else {
-          print('got a nono 200 response');
+          print(
+              'got a ${response.statusCode} status response: ${response.body} ');
         }
       } catch (e) {
         //print('request failed');

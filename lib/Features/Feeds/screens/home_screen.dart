@@ -1,8 +1,10 @@
 import 'package:explore_larosa_mobile/Components/post_card.dart';
+import 'package:explore_larosa_mobile/Features/Chat/chat_space.dart';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,11 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
-                Iconsax.messages,
-                size: 30,
-                color: LarosaColors.darkerGrey,
-              ),
+              IconButton(
+                  onPressed: () => Get.to(const ChatSpace()),
+                  icon: const Icon(
+                    Iconsax.messages,
+                    size: 30,
+                    color: LarosaColors.darkerGrey,
+                  )),
               const Text(
                 'Explore Larosa',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),

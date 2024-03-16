@@ -1,5 +1,6 @@
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ChatSpace extends StatefulWidget {
@@ -15,7 +16,7 @@ class _ChatSpaceState extends State<ChatSpace> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => Get.back(),
           icon: const Icon(Iconsax.arrow_left_2),
         ),
         title: const Text('Chat Space'),

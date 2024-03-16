@@ -54,8 +54,9 @@ class _ChatInputState extends State<ChatInput> {
               ),
               child: TextField(
                 controller: chatInputController,
-                decoration: const InputDecoration.collapsed(
+                decoration: const InputDecoration(
                   hintText: 'Type a message...',
+                  contentPadding: EdgeInsets.all(10),
                 ),
               ),
             ),
@@ -111,7 +112,7 @@ class ChatBubble extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-            color: isSentByMe ? Colors.blue : Colors.green,
+            color: isSentByMe ? Colors.blue : Colors.grey.withOpacity(0.5),
             borderRadius: BorderRadius.circular(20)),
         child: Text(
           message,

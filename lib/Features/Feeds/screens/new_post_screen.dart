@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -14,7 +15,7 @@ class NewPostScreen extends StatefulWidget {
 
 class _NewPostScreenState extends State<NewPostScreen> {
   File? image;
-  void GetImageFromGallery() async {
+  void getImageFromGallery() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
@@ -26,7 +27,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
     }
   }
 
-  void GetImageFromCamera() async {
+  void getImageFromCamera() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
       if (image == null) return;
@@ -41,41 +42,41 @@ class _NewPostScreenState extends State<NewPostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('New Post'),
-        centerTitle: true,
-        leading: const Icon(
-          Iconsax.arrow_circle_left5,
-          color: LarosaColors.primary,
+        appBar: AppBar(
+          title: const Text('New Post'),
+          centerTitle: true,
+          leading: IconButton(
+              onPressed: () => Get.back(),
+              icon: const Icon(Iconsax.arrow_circle_left)),
         ),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            image == null
-                ? Column(
-                    children: [
-                      MaterialButton(
-                        color: LarosaColors.primaryBackground,
-                        onPressed: GetImageFromGallery,
-                        child: const Text(
-                          'Pick image from Gallery',
-                        ),
-                      ),
-                      MaterialButton(
-                        color: LarosaColors.primaryBackground,
-                        onPressed: GetImageFromCamera,
-                        child: const Text('pick from camera'),
-                      ),
-                    ],
-                  )
-                : Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Column(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              image == null
+                  ? Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ClipRRect(
+                        MaterialButton(
+                          color: LarosaColors.primaryBackground,
+                          onPressed: getImageFromGallery,
+                          child: const Text(
+                            'Pick image from Gallery',
+                          ),
+                        ),
+                        MaterialButton(
+                          color: LarosaColors.primaryBackground,
+                          onPressed: getImageFromCamera,
+                          child: const Text('pick from camera'),
+                        ),
+                      ],
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: SizedBox(
                               height: 400,
@@ -85,56 +86,109 @@ class _NewPostScreenState extends State<NewPostScreen> {
                               ),
                             ),
                           ),
-                        ),
-                        const Text('Cathy Madrid'),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child: TextFormField(
-                            clipBehavior: Clip.hardEdge,
-                            // decoration: const InputDecoration(
-                            //     // border: OutlineInputBorder(
-                            //     //     borderRadius: BorderRadius.circular(20)),
-                            //     hintText: 'Description',
-                            //     focusedBorder: OutlineInputBorder(
-                            //         borderSide:
-                            //             BorderSide(color: Colors.transparent)),
-                            //     enabledBorder: OutlineInputBorder(
-                            //         borderSide:
-                            //             BorderSide(color: Colors.transparent)),
-                            //     filled: true,
-                            //     fillColor: LarosaColors.primaryBackground
-                            //     ),
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                                filled: true,
-                                fillColor: LarosaColors.primaryBackground),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20),
+                            child: Text(
+                              'Cathy Madrid',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: LarosaColors.secondary),
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: TextFormField(
-                            clipBehavior: Clip.hardEdge,
-                            decoration: InputDecoration(
-                                icon: const Icon(Iconsax.edit),
-                                hintText: 'Decoration',
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.transparent)),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(
-                                        color: Colors.transparent)),
-                                filled: true,
-                                fillColor: LarosaColors.primary),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: TextFormField(
+                              clipBehavior: Clip.hardEdge,
+                              decoration: InputDecoration(
+                                  hintText: 'Decoration',
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.transparent)),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(40),
+                                      borderSide: const BorderSide(
+                                          color: Colors.transparent)),
+                                  filled: true,
+                                  fillColor: LarosaColors.primaryBackground),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-          ],
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: TextFormField(
+                              clipBehavior: Clip.hardEdge,
+                              decoration: InputDecoration(
+                                  hintText: 'Location',
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.transparent)),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(40),
+                                      borderSide: const BorderSide(
+                                          color: Colors.transparent)),
+                                  filled: true,
+                                  fillColor: LarosaColors.primaryBackground),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: TextFormField(
+                              clipBehavior: Clip.hardEdge,
+                              decoration: InputDecoration(
+                                  hintText: 'Related Business',
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.transparent)),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(40),
+                                      borderSide: const BorderSide(
+                                          color: Colors.transparent)),
+                                  filled: true,
+                                  fillColor: LarosaColors.primaryBackground),
+                            ),
+                          ),
+                          const SizedBox(height: 100),
+                        ],
+                      ),
+                    )
+            ],
+          ),
         ),
-      ),
-    );
+        floatingActionButton: image != null
+            ? Container(
+                width: 180,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    gradient: const LinearGradient(
+                        colors: [Color(0xff34a4f9), Color(0xff0a1282)],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight)),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 0, backgroundColor: Colors.transparent),
+                  onPressed: () {},
+                  child: const Row(
+                    children: [
+                      Text(
+                        'NEXT',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Icon(
+                        Iconsax.arrow_circle_right,
+                        color: Colors.white,
+                      )
+                    ],
+                  ),
+                ),
+              )
+            : null);
   }
 }

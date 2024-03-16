@@ -30,7 +30,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: LarosaAppTheme.lightTheme,
       darkTheme: LarosaAppTheme.darkTheme,
-      home: const NewPostScreen(),
+      home: const SignupScreen(),
     );
   }
 }

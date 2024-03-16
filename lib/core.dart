@@ -1,4 +1,5 @@
 import 'package:explore_larosa_mobile/Features/Feeds/screens/home_screen.dart';
+import 'package:explore_larosa_mobile/Features/Feeds/screens/new_post_screen.dart';
 import 'package:explore_larosa_mobile/Features/Profiles/screens/business_profile.dart';
 import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,12 @@ class _CoreState extends State<Core> {
             height: 80,
             elevation: 0,
             selectedIndex: controller.selectedIndex.value,
-            onDestinationSelected: (index) =>
-                controller.selectedIndex.value = index,
+            onDestinationSelected: (index) {
+              index != 2
+                  ? controller.selectedIndex.value = index
+                  : Get.to(const NewPostScreen(),
+                      transition: Transition.downToUp);
+            },
             destinations: [
               const NavigationDestination(
                   icon: Icon(Iconsax.home), label: 'Home'),

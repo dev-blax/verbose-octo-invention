@@ -30,7 +30,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               OnboardingThree()
             ],
           ),
-          const OnboardingSkip(),
+          // const OnboardingSkip(),
           const OnboardingDotNavigation()
         ],
       ),

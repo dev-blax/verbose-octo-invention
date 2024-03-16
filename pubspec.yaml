@@ -57,6 +57,9 @@ dependencies:
   cached_network_image: ^3.3.1
   animations: ^2.0.11
 
+  #image editor
+  image: ^4.1.7
+
   # ui
   getwidget: ^4.0.0
   

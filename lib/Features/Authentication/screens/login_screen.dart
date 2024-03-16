@@ -2,13 +2,15 @@ import 'dart:ui';
 import 'package:explore_larosa_mobile/Components/spiner.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/forgot_password.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/signup_screen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:explore_larosa_mobile/Features/Onboarding/screens/account_type.dart';
+import 'package:explore_larosa_mobile/core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -235,7 +237,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 Colors.transparent),
                                         onPressed: isLoading
                                             ? null
-                                            : () => submitForm(),
+                                            : () {
+                                                Get.to(const Core());
+                                                //submitForm();
+                                              },
                                         child: isLoading
                                             ? const Spinner()
                                             : const Center(
@@ -275,7 +280,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          const SignupScreen(),
+                                                          const AccountType(),
                                                     ),
                                                   );
                                                 })

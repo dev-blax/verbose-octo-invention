@@ -1,11 +1,5 @@
-import 'dart:ui';
-
-import 'package:explore_larosa_mobile/Features/Authentication/screens/login_screen.dart';
-import 'package:explore_larosa_mobile/Features/Authentication/screens/signup_screen.dart';
 import 'package:explore_larosa_mobile/Features/Onboarding/controllers/account_type_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 

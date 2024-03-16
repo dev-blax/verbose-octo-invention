@@ -1,9 +1,12 @@
 import 'package:explore_larosa_mobile/Components/liked_heart.dart';
+import 'package:explore_larosa_mobile/Features/Chat/convo_screen.dart';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:explore_larosa_mobile/utils/constants/helper_functions.dart';
 import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class BusinessProfile extends StatefulWidget {
@@ -23,10 +26,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
           children: [
             // Profile Background Image
             Image.asset(
-              'assets/images/pizza.jpg',
+              'assets/images/milkshake2.jpg',
               height: 250,
               width: LarosaHelperFunction.screenWidth(),
               fit: BoxFit.cover,
+              filterQuality: FilterQuality.low,
             ),
             Positioned.fill(
                 child: Container(
@@ -55,6 +59,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
                     fit: BoxFit.cover,
                     height: 140,
                     width: 140,
+                    filterQuality: FilterQuality.low,
                   ),
                 ))
           ],
@@ -202,31 +207,34 @@ class _BusinessProfileState extends State<BusinessProfile> {
               ),
 
               // Chat sms
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                decoration: BoxDecoration(
-                    //color: Colors.grey.withOpacity(0.4),
-                    border: Border.all(color: LarosaColors.primary, width: 2),
-                    borderRadius: BorderRadius.circular(30)),
-                child: const Center(
-                  child: Row(
-                    children: [
-                      Icon(
-                        Iconsax.message5,
-                        color: LarosaColors.primary,
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        'Chat',
-                        style: TextStyle(
-                            color: LarosaColors.primary,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
-                      )
-                    ],
+              GestureDetector(
+                onTap: () => Get.to(const ConvoScreen()),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  decoration: BoxDecoration(
+                      //color: Colors.grey.withOpacity(0.4),
+                      border: Border.all(color: LarosaColors.primary, width: 2),
+                      borderRadius: BorderRadius.circular(30)),
+                  child: const Center(
+                    child: Row(
+                      children: [
+                        Icon(
+                          Iconsax.message5,
+                          color: LarosaColors.primary,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          'Chat',
+                          style: TextStyle(
+                              color: LarosaColors.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -281,9 +289,7 @@ class CardGrid extends StatelessWidget {
       crossAxisSpacing: 5,
       mainAxisSpacing: 5,
       crossAxisCount: 2,
-      physics:
-          const NeverScrollableScrollPhysics(), // to disable GridView's scrolling
-      shrinkWrap: true, // You won't see infinite size error
+      shrinkWrap: true,
       children: const <Widget>[
         BusinssProfilePostCard(
           imagePath: 'assets/images/mik4.jpg',
@@ -309,6 +315,9 @@ class CardGrid extends StatelessWidget {
           imagePath: 'assets/images/milkshake3.jpg',
           isLiked: true,
         ),
+        SizedBox(
+          height: 100,
+        )
       ],
     );
   }
