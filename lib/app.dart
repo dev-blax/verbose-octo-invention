@@ -1,3 +1,4 @@
+import 'package:explore_larosa_mobile/Components/animated_bottom_nav.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/business_signup.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/login_screen.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/signup_screen.dart';
@@ -30,7 +31,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: LarosaAppTheme.lightTheme,
       darkTheme: LarosaAppTheme.darkTheme,
-      home: const SignupScreen(),
+      home: const Core(),
     );
   }
 }

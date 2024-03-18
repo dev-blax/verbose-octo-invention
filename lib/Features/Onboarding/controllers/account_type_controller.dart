@@ -6,15 +6,9 @@ import 'package:get/get.dart';
 class AccountTypeController extends GetxController {
   static AccountTypeController get instance => Get.find();
 
-  void toBusinessRegistration() {
-    Get.to(const BusinessSignupScreen());
-  }
+  void toBusinessRegistration() => Get.to(const BusinessSignupScreen());
 
-  void toPersonalRegistration() {
-    Get.to(const SignupScreen());
-  }
+  void toPersonalRegistration() => Get.to(const SignupScreen());
 
-  void toSignIn() {
-    Get.to(const LoginScreen());
-  }
+  void toSignIn() => Get.to(const LoginScreen());
 }

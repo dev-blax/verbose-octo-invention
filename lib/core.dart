@@ -1,6 +1,9 @@
 import 'package:explore_larosa_mobile/Features/Feeds/screens/home_screen.dart';
 import 'package:explore_larosa_mobile/Features/Feeds/screens/new_post_screen.dart';
 import 'package:explore_larosa_mobile/Features/Profiles/screens/business_profile.dart';
+import 'package:explore_larosa_mobile/Features/Transport/screens/main_transport_screen.dart';
+import 'package:explore_larosa_mobile/Models/nav_item_model.dart';
+import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,6 +26,7 @@ class _CoreState extends State<Core> {
       body: Obx(() => controller.screens[controller.selectedIndex.value]),
       bottomNavigationBar: Obx(
         () => NavigationBar(
+            backgroundColor: LarosaColors.lightContainer,
             height: 80,
             elevation: 0,
             selectedIndex: controller.selectedIndex.value,
@@ -34,7 +38,17 @@ class _CoreState extends State<Core> {
             },
             destinations: [
               const NavigationDestination(
-                  icon: Icon(Iconsax.home), label: 'Home'),
+                icon: Icon(Iconsax.home),
+                // icon: SizedBox(
+                //   height: 36,
+                //   width: 36,
+                //   child: RiveAnimation.asset(
+                //     bottomNavItems[0].rive.src,
+                //     artboard: bottomNavItems[0].rive.artboard,
+                //   ),
+                // ),
+                label: 'Home',
+              ),
               const NavigationDestination(
                   icon: Icon(Iconsax.search_normal), label: 'Search'),
               const NavigationDestination(
@@ -61,9 +75,10 @@ class NavigationController extends GetxController {
     Container(
       color: Colors.orange,
     ),
-    Container(
-      color: Colors.purple,
-    ),
+    // Container(
+    //   color: Colors.purple,
+    // ),
+    const MainTransportScreen(),
     const BusinessProfile(),
   ];
 }

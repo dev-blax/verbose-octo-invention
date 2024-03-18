@@ -37,11 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 'Explore Larosa',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
               ),
-              SvgPicture.asset(LarosaImages.notificationIconPath,
-                  width: 40,
-                  colorFilter: const ColorFilter.mode(
-                      LarosaColors.darkerGrey, BlendMode.srcIn),
-                  semanticsLabel: 'Like icon'),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Iconsax.notification,
+                    size: 30,
+                    color: LarosaColors.darkerGrey,
+                  ))
             ],
           ),
         ),
@@ -57,18 +59,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       LarosaColors.darkerGrey, BlendMode.srcIn),
                   semanticsLabel: 'Like icon'),
               ClipOval(
-                  child: Image.asset(
-                'assets/images/portrait1.jpg',
-                height: 50,
-                width: 50,
-                fit: BoxFit.cover,
-              )),
-              SvgPicture.asset('assets/icons/MaterialSymbolsLocationOn.svg',
-                  width: 40,
-                  height: 40,
-                  colorFilter: const ColorFilter.mode(
-                      LarosaColors.darkerGrey, BlendMode.srcIn),
-                  semanticsLabel: 'Like icon'),
+                child: Image.asset(
+                  'assets/images/portrait1.jpg',
+                  height: 50,
+                  width: 50,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Iconsax.location5,
+                  size: 30,
+                  color: LarosaColors.darkerGrey,
+                ),
+              ),
             ],
           ),
         ),
@@ -80,14 +85,14 @@ class _HomeScreenState extends State<HomeScreen> {
           profilePictureString: 'assets/images/happy-couple.jpg',
         ),
         const PostCard(
-          postImageString: 'assets/images/hotel-wine.jpg',
+          postImageString: 'assets/images/pizza.jpg',
           username: 'Julius Mushi',
           isVerified: false,
           location: 'Rock City Mall',
           profilePictureString: 'assets/images/ladyInBlack.jpg',
         ),
         const PostCard(
-          postImageString: 'assets/images/beautiful-dog.jpg',
+          postImageString: 'assets/images/portrait1.jpg',
           username: 'Dwight Danda',
           isVerified: false,
           location: 'Morena Hotel, Dodoma',

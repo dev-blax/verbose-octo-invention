@@ -1,6 +1,12 @@
+import 'package:explore_larosa_mobile/Features/Chat/convo_screen.dart';
+import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -31,98 +37,172 @@ class _PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ImageSection(
-            postImagePath: widget.postImageString,
-            isLiked: isLiked,
-            username: widget.username,
-            location: widget.location,
-            profilePictureString: widget.profilePictureString),
-        //Text(widget.username),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                  onPressed: () async {
-                    setState(() {
-                      isLiked = !isLiked;
-                    });
-                    //try {
-                    //   Map<String, String> headers = {
-                    //     "Accept": "application/json",
-                    //     "Access-Control-Allow-Origin": "*"
-                    //   };
-                    //   // var uri = Uri.http('192.168.1.3:8080', 'countries/all');
-                    //   // print('sending country request');
+    return GestureDetector(
+      onDoubleTap: () {
+        setState(() {
+          isLiked = !isLiked;
+        });
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ImageSection(
+              postImagePath: widget.postImageString,
+              isLiked: isLiked,
+              username: widget.username,
+              location: widget.location,
+              profilePictureString: widget.profilePictureString),
+          //Text(widget.username),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: () async {
+                        setState(() {
+                          isLiked = !isLiked;
+                        });
+                      },
+                      icon: !isLiked
 
-                    //   // var response = await http.get(uri, headers: headers);
-                    //   // print(response);
-                    //   print('sending country request');
+                          // outlinedLike button
+                          ? SvgPicture.asset(LarosaImages.outlineHeartIconPth,
+                              width: 30,
+                              height: 30,
+                              colorFilter: const ColorFilter.mode(
+                                  Colors.black, BlendMode.srcIn),
+                              semanticsLabel: 'Like icon')
+                          : SvgPicture.asset(iconName,
+                              width: 30,
+                              height: 30,
+                              colorFilter: const ColorFilter.mode(
+                                  Colors.red, BlendMode.srcIn),
+                              semanticsLabel: 'Like icon'),
+                    ),
+                    const Text(
+                      '128k',
+                      style: TextStyle(
+                          color: LarosaColors.dark,
+                          fontWeight: FontWeight.w600),
+                    )
+                  ],
+                ),
 
-                    //   final response = await http.post(
-                    //       Uri.http('192.168.1.46:8081', '/countries/all'),
-                    //       headers: headers);
+                // Star Button
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isStarred = !isStarred;
+                        });
 
-                    //   print('got response ${response.body}');
-                    //   setState(() {
-                    //     isLiked = !isLiked;
-                    //   });
-                    // } catch (e) {
-                    //   throw Exception(e);
-                    // }
-                  },
-                  icon: !isLiked
+                        // Get.defaultDialog();
+                      },
+                      icon: !isStarred
+                          ? const Icon(
+                              Iconsax.star,
+                              size: 30,
+                            )
+                          : const Icon(
+                              Iconsax.star5,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                    ),
+                    const Text(
+                      '503',
+                      style: TextStyle(
+                          color: LarosaColors.dark,
+                          fontWeight: FontWeight.w600),
+                    )
+                  ],
+                ),
 
-                      // outlinedLike button
-                      ? SvgPicture.asset(LarosaImages.outlineHeartIconPth,
-                          width: 40,
-                          height: 40,
-                          colorFilter: const ColorFilter.mode(
-                              Colors.black, BlendMode.srcIn),
-                          semanticsLabel: 'Like icon')
-                      : SvgPicture.asset(iconName,
-                          width: 40,
-                          height: 40,
-                          colorFilter: const ColorFilter.mode(
-                              Colors.red, BlendMode.srcIn),
-                          semanticsLabel: 'Like icon')),
-
-              // Star Button
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isStarred = !isStarred;
-                    });
-
-                    // Get.defaultDialog();
-                  },
-                  icon: !isStarred
-                      ? const Icon(
-                          Iconsax.star,
-                          size: 40,
-                        )
-                      : const Icon(
-                          Iconsax.star5,
-                          color: Colors.blue,
-                          size: 40,
-                        )),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Iconsax.message, size: 40)),
-              IconButton(
-                  onPressed: () {}, icon: const Icon(Iconsax.send_2, size: 40)),
-            ],
+                // comment icon
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.bottomSheet(
+                          SingleChildScrollView(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              decoration: const BoxDecoration(
+                                  color: LarosaColors.light,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20))),
+                              child: const Wrap(
+                                children: <Widget>[
+                                  ListTile(
+                                    leading: Icon(
+                                      Iconsax.message,
+                                      color: LarosaColors.primary,
+                                    ),
+                                    title: Text('Comment 1'),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(
+                                      Iconsax.message,
+                                      color: LarosaColors.primary,
+                                    ),
+                                    title: Text('Comment 2'),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(
+                                      Iconsax.message,
+                                      color: LarosaColors.primary,
+                                    ),
+                                    title: Text('Comment 3'),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(
+                                      Iconsax.message,
+                                      color: LarosaColors.primary,
+                                    ),
+                                    title: Text('Comment 4'),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(
+                                      Iconsax.message,
+                                      color: LarosaColors.primary,
+                                    ),
+                                    title: Text('Comment 5'),
+                                  ),
+                                  ChatInput(),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Iconsax.message, size: 30),
+                    ),
+                    const Text(
+                      '200',
+                      style: TextStyle(
+                          color: LarosaColors.dark,
+                          fontWeight: FontWeight.w600),
+                    )
+                  ],
+                ),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Iconsax.send_2, size: 30)),
+              ],
+            ),
           ),
-        ),
-        const PostDetails(),
-        const SizedBox(
-          height: 20,
-        )
-      ],
+          const PostDetails(),
+          const SizedBox(
+            height: 20,
+          )
+        ],
+      ),
     );
   }
 }

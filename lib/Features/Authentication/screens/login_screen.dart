@@ -1,17 +1,17 @@
+import 'dart:convert';
 import 'dart:ui';
 import 'package:explore_larosa_mobile/Components/spiner.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/forgot_password.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/signup_screen.dart';
 import 'package:explore_larosa_mobile/Features/Onboarding/screens/account_type.dart';
 import 'package:explore_larosa_mobile/core.dart';
+import 'package:explore_larosa_mobile/utils/constants/links.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -227,6 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               BorderRadius.circular(20)),
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                            shadowColor: Colors.transparent,
                                             elevation: 0.0,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -238,8 +239,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         onPressed: isLoading
                                             ? null
                                             : () {
-                                                Get.to(const Core());
-                                                //submitForm();
+                                                //Get.to(const Core());
+                                                submitForm();
                                               },
                                         child: isLoading
                                             ? const Spinner()
@@ -306,13 +307,36 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = true;
       });
 
-      await Future.delayed(const Duration(seconds: 5));
+      //
+      Map<String, String> headers = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      };
+
+      Map<String, dynamic> bodyContent = {
+        "username": usernamController.text,
+        "password": passwordController.text,
+      };
+
+      try {
+        print('sending login req');
+        var uri = Uri.http(LarosaLinks.baseurl, LarosaLinks.loginEndpoint);
+
+        var response = await http.post(uri,
+            headers: headers, body: jsonEncode(bodyContent));
+
+        if (response.statusCode == 200) {
+          Get.snackbar('Explore Larosa', 'Successful Login');
+          Get.offAll(const Core());
+        }
+        print(response.body);
+      } catch (e) {
+        print('error $e');
+      }
 
       setState(() {
         isLoading = false;
       });
-
-      print('success');
     }
   }
 }

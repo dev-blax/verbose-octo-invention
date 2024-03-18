@@ -67,6 +67,7 @@ dependencies:
 
   # animations
   rive: ^0.12.4
+  google_maps_flutter: ^2.2.8
 
 dev_dependencies:
   flutter_test:
@@ -94,6 +95,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/riv_assets/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

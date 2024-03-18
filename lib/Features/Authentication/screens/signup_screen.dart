@@ -134,39 +134,39 @@ class _SignupScreenState extends State<SignupScreen> {
                                           ),
 
                                           // Countries
-                                          DropdownButtonFormField<String>(
-                                            value: selectedValue,
-                                            items: dropdownItems
-                                                .map((String value) {
-                                              return DropdownMenuItem<String>(
-                                                value: value,
-                                                child: Text(
-                                                  value,
-                                                  style: const TextStyle(
-                                                      color: Colors.blueGrey),
-                                                ),
-                                              );
-                                            }).toList(),
-                                            onChanged: (String? newValue) {
-                                              setState(() {
-                                                selectedValue = newValue!;
-                                              });
-                                            },
-                                            decoration: InputDecoration(
-                                              border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                              ),
-                                              filled: true,
-                                              fillColor: Colors.white,
-                                              prefixIcon:
-                                                  const Icon(Iconsax.flag),
-                                            ),
-                                          ),
+                                          // DropdownButtonFormField<String>(
+                                          //   value: selectedValue,
+                                          //   items: dropdownItems
+                                          //       .map((String value) {
+                                          //     return DropdownMenuItem<String>(
+                                          //       value: value,
+                                          //       child: Text(
+                                          //         value,
+                                          //         style: const TextStyle(
+                                          //             color: Colors.blueGrey),
+                                          //       ),
+                                          //     );
+                                          //   }).toList(),
+                                          //   onChanged: (String? newValue) {
+                                          //     setState(() {
+                                          //       selectedValue = newValue!;
+                                          //     });
+                                          //   },
+                                          //   decoration: InputDecoration(
+                                          //     border: OutlineInputBorder(
+                                          //       borderRadius:
+                                          //           BorderRadius.circular(20),
+                                          //     ),
+                                          //     filled: true,
+                                          //     fillColor: Colors.white,
+                                          //     prefixIcon:
+                                          //         const Icon(Iconsax.flag),
+                                          //   ),
+                                          // ),
 
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
+                                          // const SizedBox(
+                                          //   height: 20,
+                                          // ),
 
                                           // name input
                                           TextFormField(
@@ -425,13 +425,9 @@ class _SignupScreenState extends State<SignupScreen> {
       });
 
       Map<String, String> headers = {
-        "Accept": "application/json",
+        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
       };
-      // var headers = {
-      //   'Content-Type': 'application/json',
-      //   "Access-Control-Allow-Origin": "*"
-      // };
 
       Map<String, dynamic> bodyContent = {
         "accountTypeId": 1,
@@ -451,7 +447,7 @@ class _SignupScreenState extends State<SignupScreen> {
             headers: headers, body: json.encode(bodyContent));
 
         if (response.statusCode == 201) {
-          //print('success');
+          print(response.body);
           Get.to(const Core());
           // print('response ${response.body}');
         } else {
