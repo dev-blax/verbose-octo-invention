@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const PostCard(
           postImageString: 'assets/images/portrait1.jpg',
-          username: 'Dwight Danda',
+          username: 'Stancer Fame',
           isVerified: false,
           location: 'Morena Hotel, Dodoma',
           profilePictureString: 'assets/images/lady-nice-hair.jpg',

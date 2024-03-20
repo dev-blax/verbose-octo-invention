@@ -32,6 +32,7 @@ class App extends StatelessWidget {
       name: '/convo',
       page: () => const ConvoScreen(),
     ),
+    GetPage(name: '/new_post', page: () => const NewPostScreen())
   ];
 
   @override
