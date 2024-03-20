@@ -21,12 +21,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+
+  final appRoutes = [
+    GetPage(
+      name: '/chatspace',
+      page: () => const ChatSpace(),
+    ),
+    GetPage(
+      name: '/convo',
+      page: () => const ConvoScreen(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     Get.put(AccountTypeController());
     return GetMaterialApp(
+      getPages: appRoutes,
       defaultTransition: Transition.leftToRight,
       themeMode: ThemeMode.system,
       theme: LarosaAppTheme.lightTheme,

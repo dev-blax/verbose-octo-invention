@@ -17,7 +17,10 @@ class _ChatSpaceState extends State<ChatSpace> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon: const Icon(Iconsax.arrow_left_2),
+          icon: const Icon(
+            Iconsax.arrow_circle_left5,
+            color: LarosaColors.secondary,
+          ),
         ),
         title: const Text('Chat Space'),
         centerTitle: true,

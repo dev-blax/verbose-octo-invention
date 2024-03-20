@@ -1,8 +1,9 @@
+import 'package:explore_larosa_mobile/Features/Chat/chat_space.dart';
+import 'package:explore_larosa_mobile/Features/Chat/convo_screen.dart';
 import 'package:explore_larosa_mobile/Features/Feeds/screens/home_screen.dart';
 import 'package:explore_larosa_mobile/Features/Feeds/screens/new_post_screen.dart';
 import 'package:explore_larosa_mobile/Features/Profiles/screens/business_profile.dart';
 import 'package:explore_larosa_mobile/Features/Transport/screens/main_transport_screen.dart';
-import 'package:explore_larosa_mobile/Models/nav_item_model.dart';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,16 @@ class Core extends StatefulWidget {
 }
 
 class _CoreState extends State<Core> {
+  final routes = [
+    GetPage(
+      name: '/chatspace',
+      page: () => const ChatSpace(),
+    ),
+    GetPage(
+      name: '/convo',
+      page: () => const ConvoScreen(),
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());

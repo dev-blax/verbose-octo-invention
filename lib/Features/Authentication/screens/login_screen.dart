@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:explore_larosa_mobile/Components/larosa_divider.dart';
+import 'package:explore_larosa_mobile/Components/oauth_buttons.dart';
 import 'package:explore_larosa_mobile/Components/spiner.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/forgot_password.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/signup_screen.dart';
@@ -77,78 +79,57 @@ class _LoginScreenState extends State<LoginScreen> {
                                     const SizedBox(
                                       height: 20,
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: Image.asset(
-                                              'assets/icons/icons8-google-48.png'),
-                                        ),
-                                        Container(
-                                          padding: const EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: Image.asset(
-                                              'assets/icons/icons8-tiktok-48.png'),
-                                        ),
-                                        Container(
-                                          padding: const EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: Image.asset(
-                                              'assets/icons/icons8-facebook-48.png'),
-                                        ),
-                                        Container(
-                                          padding: const EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: Image.asset(
-                                              'assets/icons/icons8-instagram-48.png'),
-                                        ),
-                                      ],
-                                    ),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceAround,
+                                    //   children: [
+                                    //     Container(
+                                    //       padding: const EdgeInsets.all(5),
+                                    //       decoration: BoxDecoration(
+                                    //           color: Colors.white,
+                                    //           borderRadius:
+                                    //               BorderRadius.circular(10)),
+                                    //       child: Image.asset(
+                                    //           'assets/icons/icons8-google-48.png'),
+                                    //     ),
+                                    //     Container(
+                                    //       padding: const EdgeInsets.all(5),
+                                    //       decoration: BoxDecoration(
+                                    //           color: Colors.white,
+                                    //           borderRadius:
+                                    //               BorderRadius.circular(10)),
+                                    //       child: Image.asset(
+                                    //           'assets/icons/icons8-tiktok-48.png'),
+                                    //     ),
+                                    //     Container(
+                                    //       padding: const EdgeInsets.all(5),
+                                    //       decoration: BoxDecoration(
+                                    //           color: Colors.white,
+                                    //           borderRadius:
+                                    //               BorderRadius.circular(10)),
+                                    //       child: Image.asset(
+                                    //           'assets/icons/icons8-facebook-48.png'),
+                                    //     ),
+                                    //     Container(
+                                    //       padding: const EdgeInsets.all(5),
+                                    //       decoration: BoxDecoration(
+                                    //           color: Colors.white,
+                                    //           borderRadius:
+                                    //               BorderRadius.circular(10)),
+                                    //       child: Image.asset(
+                                    //           'assets/icons/icons8-instagram-48.png'),
+                                    //     ),
+                                    //   ],
+                                    // ),
+
+                                    const OauthButtons(),
 
                                     const SizedBox(
                                       height: 20,
                                     ),
 
                                     // Divider
-                                    const Row(
-                                      children: [
-                                        Flexible(
-                                            child: Divider(
-                                          color: Colors.white,
-                                          thickness: 3,
-                                          indent: 10,
-                                          endIndent: 5,
-                                        )),
-                                        Text(
-                                          'OR',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.white),
-                                        ),
-                                        Flexible(
-                                            child: Divider(
-                                          color: Colors.white,
-                                          thickness: 3,
-                                          indent: 5,
-                                          endIndent: 10,
-                                        )),
-                                      ],
-                                    ),
+                                    const LarosaDivider(),
                                     const SizedBox(
                                       height: 20,
                                     ),
@@ -216,15 +197,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Container(
                                       height: 65,
                                       decoration: BoxDecoration(
-                                          gradient: const LinearGradient(
-                                              colors: [
-                                                Color(0xff34a4f9),
-                                                Color(0xff0a1282)
-                                              ],
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight),
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
+                                        gradient: const LinearGradient(
+                                          colors: [
+                                            Color(0xff34a4f9),
+                                            Color(0xff0a1282)
+                                          ],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             shadowColor: Colors.transparent,

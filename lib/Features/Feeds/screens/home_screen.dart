@@ -1,5 +1,4 @@
 import 'package:explore_larosa_mobile/Components/post_card.dart';
-import 'package:explore_larosa_mobile/Features/Chat/chat_space.dart';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
@@ -27,12 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  onPressed: () => Get.to(const ChatSpace()),
-                  icon: const Icon(
-                    Iconsax.messages,
-                    size: 30,
-                    color: LarosaColors.darkerGrey,
-                  )),
+                onPressed: () => Get.toNamed('/chatspace'),
+                icon: const Icon(
+                  Iconsax.messages,
+                  size: 30,
+                  color: LarosaColors.darkerGrey,
+                ),
+              ),
               const Text(
                 'Explore Larosa',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
@@ -47,38 +47,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SvgPicture.asset(LarosaImages.boldFireballIconPath,
-                  width: 40,
-                  height: 40,
-                  colorFilter: const ColorFilter.mode(
-                      LarosaColors.darkerGrey, BlendMode.srcIn),
-                  semanticsLabel: 'Like icon'),
-              ClipOval(
-                child: Image.asset(
-                  'assets/images/portrait1.jpg',
-                  height: 50,
-                  width: 50,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Iconsax.location5,
-                  size: 30,
-                  color: LarosaColors.darkerGrey,
-                ),
-              ),
-            ],
-          ),
+        const TransportFilters(),
+        const PostCard(
+          postImageString: 'assets/images/swim.jpg',
+          username: 'Vanessa',
+          isVerified: false,
+          profilePictureString: 'assets/images/portrait1.jpg',
+          location: 'Santori, Greece',
         ),
         const PostCard(
-          postImageString: 'assets/images/happy-couple.jpg',
+          postImageString: 'assets/images/dinner-2.jpg',
           username: 'Fredrick Shayo',
           isVerified: false,
           location: 'Mlimani City, Dar',
@@ -104,8 +82,50 @@ class _HomeScreenState extends State<HomeScreen> {
           isVerified: true,
           location: 'Rafiki Hotel, Dodoma',
           profilePictureString: 'assets/images/ladyInBlack.jpg',
-        )
+        ),
       ],
+    );
+  }
+}
+
+class TransportFilters extends StatelessWidget {
+  const TransportFilters({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SvgPicture.asset(
+            LarosaImages.boldFireballIconPath,
+            width: 40,
+            height: 40,
+            colorFilter: const ColorFilter.mode(
+                LarosaColors.darkerGrey, BlendMode.srcIn),
+            semanticsLabel: 'Like icon',
+          ),
+          ClipOval(
+            child: Image.asset(
+              'assets/images/portrait1.jpg',
+              height: 50,
+              width: 50,
+              fit: BoxFit.cover,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Iconsax.location5,
+              size: 30,
+              color: LarosaColors.darkerGrey,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

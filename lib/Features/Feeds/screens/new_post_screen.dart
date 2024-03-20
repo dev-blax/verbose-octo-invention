@@ -171,28 +171,21 @@ class _NewPostScreenState extends State<NewPostScreen> {
                                   ],
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight)),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                backgroundColor: Colors.transparent),
-                            onPressed: () {},
-                            child: const Row(
-                              children: [
-                                Text(
-                                  'NEXT',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 18),
-                                ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Icon(
-                                  Iconsax.arrow_circle_right,
-                                  color: Colors.white,
-                                )
-                              ],
+                          child: Center(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  backgroundColor: Colors.transparent),
+                              onPressed: () {
+                                print('clicked');
+                              },
+                              child: const Text(
+                                'POST',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18),
+                              ),
                             ),
                           ),
                         ),
