@@ -4,7 +4,6 @@ import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:explore_larosa_mobile/utils/constants/helper_functions.dart';
 import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';

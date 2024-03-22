@@ -1,6 +1,7 @@
 import 'package:explore_larosa_mobile/Components/post_card.dart';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
 import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
+import 'package:explore_larosa_mobile/utils/constants/svg_icons_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -27,10 +28,15 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               IconButton(
                 onPressed: () => Get.toNamed('/chatspace'),
-                icon: const Icon(
-                  Iconsax.messages,
-                  size: 30,
-                  color: LarosaColors.darkerGrey,
+                icon: SvgPicture.asset(
+                  SvgIconsPaths.chatOutline,
+                  width: 40,
+                  height: 40,
+                  colorFilter: const ColorFilter.mode(
+                    LarosaColors.darkerGrey,
+                    BlendMode.srcIn,
+                  ),
+                  semanticsLabel: 'chat icon',
                 ),
               ),
               const Text(
@@ -38,12 +44,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
               ),
               IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Iconsax.notification,
-                    size: 30,
-                    color: LarosaColors.darkerGrey,
-                  ))
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  SvgIconsPaths.notificationOutline,
+                  width: 40,
+                  height: 40,
+                  colorFilter: const ColorFilter.mode(
+                    LarosaColors.darkerGrey,
+                    BlendMode.srcIn,
+                  ),
+                  semanticsLabel: 'notification icon',
+                ),
+              ),
             ],
           ),
         ),
@@ -101,12 +113,14 @@ class TransportFilters extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(
-            LarosaImages.boldFireballIconPath,
+            SvgIconsPaths.fireOutline,
             width: 40,
             height: 40,
             colorFilter: const ColorFilter.mode(
-                LarosaColors.darkerGrey, BlendMode.srcIn),
-            semanticsLabel: 'Like icon',
+              LarosaColors.darkerGrey,
+              BlendMode.srcIn,
+            ),
+            semanticsLabel: 'Fire icon',
           ),
           ClipOval(
             child: Image.asset(
@@ -118,10 +132,15 @@ class TransportFilters extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(
-              Iconsax.location5,
-              size: 30,
-              color: LarosaColors.darkerGrey,
+            icon: SvgPicture.asset(
+              SvgIconsPaths.locationOutline,
+              width: 40,
+              height: 40,
+              colorFilter: const ColorFilter.mode(
+                LarosaColors.darkerGrey,
+                BlendMode.srcIn,
+              ),
+              semanticsLabel: 'location icon',
             ),
           ),
         ],
