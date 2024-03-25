@@ -15,7 +15,7 @@ class SvgIconsPaths {
 
   static const String fireOutline = 'assets/svg_icons/fireOutline.svg';
 
-  static const String homeBold = 'assets/svg_icons/homebold.svg';
+  static const String homeBold = 'assets/svg_icons/homeBold.svg';
 
   static const String homeOutline = 'assets/svg_icons/homeOutline.svg';
 
@@ -59,4 +59,6 @@ class SvgIconsPaths {
 
   static const String sendArrowOutline =
       'assets/svg_icons/sendArrowOutline.svg';
+
+  static const String crossCircle = 'assets/svg_icons/crossCircle.svg';
 }

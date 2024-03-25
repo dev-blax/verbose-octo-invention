@@ -1,6 +1,7 @@
 import 'package:explore_larosa_mobile/Features/Feeds/screens/components/business_post_card.dart';
 import 'package:explore_larosa_mobile/Features/Feeds/screens/components/personal_post_card.dart';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
+import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:explore_larosa_mobile/utils/constants/svg_icons_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -65,9 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
           businessLocation: 'Post, Dar-es-salaam',
           postImageString:
               'https://images.pexels.com/photos/2233348/pexels-photo-2233348.jpeg?auto=compress&cs=tinysrgb&w=600',
-          username: 'Vanessa',
+          username: 'Johari Rotana',
           isVerified: false,
-          profilePictureString: 'assets/images/portrait1.jpg',
+          profilePictureString:
+              'https://images.pexels.com/photos/20230203/pexels-photo-20230203/free-photo-of-an-old-camera-sitting-on-top-of-a-newspaper.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
           location: 'Santori, Greece',
         ),
         const PersonalPostCard(),
@@ -80,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
           username: 'KFC',
           isVerified: false,
           location: 'Mlimani City, Dar',
-          profilePictureString: 'assets/images/happy-couple.jpg',
+          profilePictureString:
+              'https://images.pexels.com/photos/18818714/pexels-photo-18818714/free-photo-of-gallery-in-italy.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
         ),
         const PersonalPostCard(),
         const BusinessPostCard(
@@ -92,7 +95,8 @@ class _HomeScreenState extends State<HomeScreen> {
           username: 'Rhobaika',
           isVerified: false,
           location: 'Rock City Mall',
-          profilePictureString: 'assets/images/ladyInBlack.jpg',
+          profilePictureString:
+              'https://images.pexels.com/photos/13562058/pexels-photo-13562058.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
         ),
         const PersonalPostCard(),
         const BusinessPostCard(
@@ -104,7 +108,8 @@ class _HomeScreenState extends State<HomeScreen> {
           username: 'Stancer Fame',
           isVerified: false,
           location: 'Morena Hotel, Dodoma',
-          profilePictureString: 'assets/images/lady-nice-hair.jpg',
+          profilePictureString:
+              'https://images.pexels.com/photos/16563297/pexels-photo-16563297/free-photo-of-hermitage-of-saint-john-in-montserrat.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
         ),
         const PersonalPostCard(),
         const BusinessPostCard(
@@ -116,7 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
           username: 'James Mbogo',
           isVerified: true,
           location: 'Rafiki Hotel, Dodoma',
-          profilePictureString: 'assets/images/ladyInBlack.jpg',
+          profilePictureString:
+              'https://images.pexels.com/photos/20523844/pexels-photo-20523844/free-photo-of-a-vintage-telephone-on-a-table-with-a-clock.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
         ),
       ],
     );
@@ -153,15 +159,26 @@ class TopBar2 extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 5,
-                    offset: const Offset(0, 2), // changes position of shadow
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
-              child: Image.asset(
-                'assets/images/portrait1.jpg',
+              child: FadeInImage(
+                placeholder: const AssetImage('assets/images/placeholder.png'),
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    LarosaImages.AvatarPlaceholder,
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.cover,
+                  );
+                },
                 height: 50,
                 width: 50,
                 fit: BoxFit.cover,
+                image: const NetworkImage(
+                  'https://images.pexels.com/photos/18325432/pexels-photo-18325432/free-photo-of-hiker-and-a-camera-standing-by-a-lake-in-the-forest-with-her-arms-spread.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+                ),
               ),
             ),
           ),

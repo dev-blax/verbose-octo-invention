@@ -1,4 +1,4 @@
-import 'package:explore_larosa_mobile/Components/spiner.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:explore_larosa_mobile/Features/Chat/convo_screen.dart';
 import 'package:explore_larosa_mobile/Features/Profiles/screens/business_profile.dart';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
@@ -6,7 +6,6 @@ import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:explore_larosa_mobile/utils/constants/svg_icons_paths.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -382,16 +381,20 @@ class ImageSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          color: LarosaColors.grey,
-          child: FadeInImage(
-            placeholder: const AssetImage('assets/images/placeholder.png'),
-            image: NetworkImage(
-              postImagePath,
-            ),
+        CachedNetworkImage(
+          imageUrl: postImagePath,
+          placeholder: (context, url) => Image.asset(
+            LarosaImages.loadingGif,
             height: 500,
             width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
+          ),
+          fit: BoxFit.cover,
+          fadeInDuration: const Duration(milliseconds: 300),
+          fadeOutDuration: const Duration(milliseconds: 100),
+          height: 500,
+          width: MediaQuery.of(context).size.width,
+          errorWidget: (context, url, error) => Image.asset(
+            LarosaImages.AvatarPlaceholder,
           ),
         ),
         Positioned(
@@ -426,17 +429,43 @@ class ImageSection extends StatelessWidget {
               Row(
                 children: [
                   // profile picture
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        image: const DecorationImage(
-                            image: NetworkImage(
-                              'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBvcnRyYWl0fGVufDB8fDB8fHww',
-                            ),
-                            fit: BoxFit.cover),
-                        borderRadius: BorderRadius.circular(25)),
+                  // Container(
+                  //   width: 50,
+                  //   height: 50,
+                  //   decoration: BoxDecoration(
+                  //       image: const DecorationImage(
+                  //           image: NetworkImage(
+                  //             'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBvcnRyYWl0fGVufDB8fDB8fHww',
+                  //           ),
+                  //           fit: BoxFit.cover),
+                  //       borderRadius: BorderRadius.circular(25)),
+                  // ),
+                  CachedNetworkImage(
+                    imageUrl: profilePictureString,
+                    imageBuilder: (context, imageProvider) => Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                    placeholder: (context, url) => Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.grey, // Placeholder color
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => const Icon(Icons
+                        .error), // Error widget, you can customize as needed
+                    fit: BoxFit.cover,
                   ),
+
                   const SizedBox(
                     width: 8,
                   ),

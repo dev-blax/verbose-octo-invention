@@ -14,4 +14,8 @@ class LarosaImages {
       'assets/icons/MaterialSymbolsLightAccountCircleOutline.svg';
 
   static const String starIconPath = 'assets/icons/MaterialSymbolsKidStar.svg';
+
+  static const String loadingGif = 'assets/gifs/loader.gif';
+
+  static const String AvatarPlaceholder = 'assets/images/placeholder.png';
 }

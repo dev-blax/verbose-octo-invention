@@ -39,6 +39,7 @@ dependencies:
   iconsax: ^0.0.8
   flutter_spinkit: ^5.2.0
   image_picker: ^1.0.7
+  multi_dropdown: ^2.1.4
 
   # state management
   get: ^4.6.6
@@ -62,6 +63,7 @@ dependencies:
 
   # ui
   getwidget: ^4.0.0
+
   
 
 
