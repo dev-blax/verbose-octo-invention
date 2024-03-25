@@ -8,6 +8,9 @@ class LarosaColors {
   static const Color secondary = Color(0xff0a1282);
   static const Color accent = Color(0xFFb0c7ff);
 
+  // Icon colors
+  static const Color gold = Color(0xffFFD700);
+
   // Text colors
   static const Color textPrimary = Color(0xFF333333);
   static const Color textSecondary = Color(0xFF6C757D);

@@ -1,11 +1,10 @@
-import 'package:explore_larosa_mobile/Components/post_card.dart';
+import 'package:explore_larosa_mobile/Features/Feeds/screens/components/business_post_card.dart';
+import 'package:explore_larosa_mobile/Features/Feeds/screens/components/personal_post_card.dart';
 import 'package:explore_larosa_mobile/utils/constants/colors.dart';
-import 'package:explore_larosa_mobile/utils/constants/image_strings.dart';
 import 'package:explore_larosa_mobile/utils/constants/svg_icons_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -59,37 +58,61 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        const TransportFilters(),
-        const PostCard(
-          postImageString: 'assets/images/swim.jpg',
+        const TopBar2(),
+        const BusinessPostCard(
+          rating: 4.6,
+          price: 6500.50,
+          businessLocation: 'Post, Dar-es-salaam',
+          postImageString:
+              'https://images.pexels.com/photos/2233348/pexels-photo-2233348.jpeg?auto=compress&cs=tinysrgb&w=600',
           username: 'Vanessa',
           isVerified: false,
           profilePictureString: 'assets/images/portrait1.jpg',
           location: 'Santori, Greece',
         ),
-        const PostCard(
-          postImageString: 'assets/images/dinner-2.jpg',
-          username: 'Fredrick Shayo',
+        const PersonalPostCard(),
+        const BusinessPostCard(
+          rating: 4.2,
+          price: 42000,
+          businessLocation: 'Kisasa, Dodoma',
+          postImageString:
+              'https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=600',
+          username: 'KFC',
           isVerified: false,
           location: 'Mlimani City, Dar',
           profilePictureString: 'assets/images/happy-couple.jpg',
         ),
-        const PostCard(
-          postImageString: 'assets/images/pizza.jpg',
-          username: 'Julius Mushi',
+        const PersonalPostCard(),
+        const BusinessPostCard(
+          rating: 3.5,
+          price: 21000,
+          businessLocation: 'Capital City Mall, Dodoma',
+          postImageString:
+              'https://images.pexels.com/photos/2120483/pexels-photo-2120483.jpeg?auto=compress&cs=tinysrgb&w=600',
+          username: 'Rhobaika',
           isVerified: false,
           location: 'Rock City Mall',
           profilePictureString: 'assets/images/ladyInBlack.jpg',
         ),
-        const PostCard(
-          postImageString: 'assets/images/portrait1.jpg',
+        const PersonalPostCard(),
+        const BusinessPostCard(
+          rating: 4.2,
+          price: 42000,
+          businessLocation: 'Kisasa, Dodoma',
+          postImageString:
+              'https://images.pexels.com/photos/6529599/pexels-photo-6529599.jpeg?auto=compress&cs=tinysrgb&w=600',
           username: 'Stancer Fame',
           isVerified: false,
           location: 'Morena Hotel, Dodoma',
           profilePictureString: 'assets/images/lady-nice-hair.jpg',
         ),
-        const PostCard(
-          postImageString: 'assets/images/ladyInBlack.jpg',
+        const PersonalPostCard(),
+        const BusinessPostCard(
+          rating: 4.2,
+          price: 42000,
+          businessLocation: 'Kisasa, Dodoma',
+          postImageString:
+              'https://images.pexels.com/photos/3323687/pexels-photo-3323687.jpeg?auto=compress&cs=tinysrgb&w=600',
           username: 'James Mbogo',
           isVerified: true,
           location: 'Rafiki Hotel, Dodoma',
@@ -100,8 +123,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class TransportFilters extends StatelessWidget {
-  const TransportFilters({
+class TopBar2 extends StatelessWidget {
+  const TopBar2({
     super.key,
   });
 
@@ -123,11 +146,23 @@ class TransportFilters extends StatelessWidget {
             semanticsLabel: 'Fire icon',
           ),
           ClipOval(
-            child: Image.asset(
-              'assets/images/portrait1.jpg',
-              height: 50,
-              width: 50,
-              fit: BoxFit.cover,
+            child: Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Image.asset(
+                'assets/images/portrait1.jpg',
+                height: 50,
+                width: 50,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           IconButton(

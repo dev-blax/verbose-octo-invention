@@ -32,12 +32,17 @@ class App extends StatelessWidget {
       name: '/convo',
       page: () => const ConvoScreen(),
     ),
-    GetPage(name: '/new_post', page: () => const NewPostScreen())
+    GetPage(
+      name: '/new_post',
+      page: () => const NewPostScreen(),
+    )
   ];
 
   @override
   Widget build(BuildContext context) {
-    Get.put(AccountTypeController());
+    Get.put(
+      AccountTypeController(),
+    );
     return GetMaterialApp(
       getPages: appRoutes,
       defaultTransition: Transition.leftToRight,

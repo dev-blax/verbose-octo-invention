@@ -3,9 +3,9 @@ class SvgIconsPaths {
 
   static const String addOutline = 'assets/svg_icons/addOutline.svg';
 
-  static const String chatBold = 'assets/svg_icons/chatBold.svg';
+  static const String chatBold = 'assets/svg_icons/messageBold.svg';
 
-  static const String chatOutline = 'assets/svg_icons/chatOutline.svg';
+  static const String chatOutline = 'assets/svg_icons/messageOutline.svg';
 
   static const String commentBold = 'assets/svg_icons/commentBold.svg';
 
@@ -54,4 +54,9 @@ class SvgIconsPaths {
       'assets/svg_icons/arrowLeftOutline.svg';
 
   static const String arrowLeftBold = 'assets/svg_icons/arrowLeftBold.svg';
+
+  static const String sendArrowBold = 'assets/svg_icons/sendArrowBold.svg';
+
+  static const String sendArrowOutline =
+      'assets/svg_icons/sendArrowOutline.svg';
 }
