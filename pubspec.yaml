@@ -40,6 +40,7 @@ dependencies:
   flutter_spinkit: ^5.2.0
   image_picker: ^1.0.7
   multi_dropdown: ^2.1.4
+  autocomplete_textfield: ^2.0.1
 
   # state management
   get: ^4.6.6

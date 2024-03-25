@@ -49,7 +49,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: LarosaAppTheme.lightTheme,
       darkTheme: LarosaAppTheme.darkTheme,
-      home: const Core(),
+      home: const NewPostScreen(),
     );
   }
 }
