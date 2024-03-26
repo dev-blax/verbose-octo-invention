@@ -5,398 +5,448 @@ void main() {
   runApp(App());
 }
 
-// import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+// // Copyright 2013 The Flutter Authors. All rights reserved.
+// // Use of this source code is governed by a BSD-style license that can be
+// // found in the LICENSE file.
+
+// // ignore_for_file: public_member_api_docs
+
+// /// An example of using the plugin, controlling lifecycle and playback of the
+// /// video.
+// library;
+
 // import 'package:flutter/material.dart';
+// import 'package:video_player/video_player.dart';
 
-// void main() => runApp(const MyApp());
+// void main() {
+//   runApp(
+//     MaterialApp(
+//       home: _App(),
+//     ),
+//   );
+// }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
+// class _App extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Auto Complete TextField Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const MyHomePage(),
-//     );
-//   }
-// }
-
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key});
-
-//   @override
-//   State<StatefulWidget> createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   List<Widget> pages = [const FirstPage(), const SecondPage()];
-//   int selectedIndex = 0;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       bottomNavigationBar: BottomNavigationBar(
-//         items: const [
-//           BottomNavigationBarItem(
-//             icon: Center(child: Text("1")),
-//             label: "Simple Use",
-//           ),
-//           BottomNavigationBarItem(
-//               icon: Center(child: Text("2")), label: "Complex Use"),
-//         ],
-//         onTap: (index) => setState(() {
-//           selectedIndex = index;
-//         }),
-//         currentIndex: selectedIndex,
-//       ),
-//       body: pages[selectedIndex],
-//     );
-//   }
-// }
-
-// class FirstPage extends StatefulWidget {
-//   const FirstPage({super.key});
-
-//   @override
-//   _FirstPageState createState() => _FirstPageState();
-// }
-
-// class _FirstPageState extends State<FirstPage> {
-//   List<String> added = [];
-//   String currentText = "";
-//   GlobalKey<AutoCompleteTextFieldState<String>> key = GlobalKey();
-
-//   _FirstPageState() {
-//     textField = SimpleAutoCompleteTextField(
-//       key: key,
-//       decoration: const InputDecoration(errorText: "Beans"),
-//       controller: TextEditingController(text: "Starting Text"),
-//       suggestions: suggestions,
-//       textChanged: (text) => currentText = text,
-//       clearOnSubmit: true,
-//       textSubmitted: (text) => setState(() {
-//         if (text != "") {
-//           added.add(text);
-//         }
-//       }),
-//     );
-//   }
-
-//   List<String> suggestions = [
-//     "Apple",
-//     "Armidillo",
-//     "Actual",
-//     "Actuary",
-//     "America",
-//     "Argentina",
-//     "Australia",
-//     "Antarctica",
-//     "Blueberry",
-//     "Cheese",
-//     "Danish",
-//     "Eclair",
-//     "Fudge",
-//     "Granola",
-//     "Hazelnut",
-//     "Ice Cream",
-//     "Jely",
-//     "Kiwi Fruit",
-//     "Lamb",
-//     "Macadamia",
-//     "Nachos",
-//     "Oatmeal",
-//     "Palm Oil",
-//     "Quail",
-//     "Rabbit",
-//     "Salad",
-//     "T-Bone Steak",
-//     "Urid Dal",
-//     "Vanilla",
-//     "Waffles",
-//     "Yam",
-//     "Zest"
-//   ];
-
-//   SimpleAutoCompleteTextField? textField;
-//   bool showWhichErrorText = false;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     Column body = Column(children: [
-//       ListTile(
-//           title: textField,
-//           trailing: IconButton(
-//               icon: const Icon(Icons.add),
+//     return DefaultTabController(
+//       length: 3,
+//       child: Scaffold(
+//         key: const ValueKey<String>('home_page'),
+//         appBar: AppBar(
+//           title: const Text('Video player example'),
+//           actions: <Widget>[
+//             IconButton(
+//               key: const ValueKey<String>('push_tab'),
+//               icon: const Icon(Icons.navigation),
 //               onPressed: () {
-//                 textField!.triggerSubmitted();
-//                 showWhichErrorText = !showWhichErrorText;
-//                 textField!.updateDecoration(
-//                   decoration: InputDecoration(
-//                     errorText: showWhichErrorText ? "Beans" : "Tomatoes",
+//                 Navigator.push<_PlayerVideoAndPopPage>(
+//                   context,
+//                   MaterialPageRoute<_PlayerVideoAndPopPage>(
+//                     builder: (BuildContext context) => _PlayerVideoAndPopPage(),
 //                   ),
 //                 );
-//               })),
-//     ]);
-
-//     body.children.addAll(added.map((item) {
-//       return ListTile(title: Text(item));
-//     }));
-
-//     return Scaffold(
-//       appBar: AppBar(
-//           title: const Text('AutoComplete TextField Demo Simple'),
-//           actions: [
-//             IconButton(
-//                 icon: const Icon(Icons.edit),
-//                 onPressed: () => showDialog(
-//                     builder: (_) {
-//                       String text = "";
-
-//                       return AlertDialog(
-//                           title: const Text("Change Suggestions"),
-//                           content: TextField(onChanged: (text) => text = text),
-//                           actions: [
-//                             TextButton(
-//                                 onPressed: () {
-//                                   if (text != "") {
-//                                     suggestions.add(text);
-//                                     textField!.updateSuggestions(suggestions);
-//                                   }
-//                                   Navigator.pop(context);
-//                                 },
-//                                 child: const Text("Add")),
-//                           ]);
-//                     },
-//                     context: context))
-//           ]),
-//       body: body,
+//               },
+//             )
+//           ],
+//           bottom: const TabBar(
+//             isScrollable: true,
+//             tabs: <Widget>[
+//               Tab(
+//                 icon: Icon(Icons.cloud),
+//                 text: 'Remote',
+//               ),
+//               Tab(icon: Icon(Icons.insert_drive_file), text: 'Asset'),
+//               Tab(icon: Icon(Icons.list), text: 'List example'),
+//             ],
+//           ),
+//         ),
+//         body: TabBarView(
+//           children: <Widget>[
+//             _BumbleBeeRemoteVideo(),
+//             _ButterFlyAssetVideo(),
+//             _ButterFlyAssetVideoInList(),
+//           ],
+//         ),
+//       ),
 //     );
 //   }
 // }
 
-// class ArbitrarySuggestionType {
-//   //For the mock data type we will use review (perhaps this could represent a restaurant);
-//   num stars;
-//   String name, imgURL;
-
-//   ArbitrarySuggestionType(this.stars, this.name, this.imgURL);
+// class _ButterFlyAssetVideoInList extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView(
+//       children: <Widget>[
+//         const _ExampleCard(title: 'Item a'),
+//         const _ExampleCard(title: 'Item b'),
+//         const _ExampleCard(title: 'Item c'),
+//         const _ExampleCard(title: 'Item d'),
+//         const _ExampleCard(title: 'Item e'),
+//         const _ExampleCard(title: 'Item f'),
+//         const _ExampleCard(title: 'Item g'),
+//         Card(
+//             child: Column(children: <Widget>[
+//           Column(
+//             children: <Widget>[
+//               const ListTile(
+//                 leading: Icon(Icons.cake),
+//                 title: Text('Video video'),
+//               ),
+//               Stack(
+//                   alignment: FractionalOffset.bottomRight +
+//                       const FractionalOffset(-0.1, -0.1),
+//                   children: <Widget>[
+//                     _ButterFlyAssetVideo(),
+//                     Image.asset('assets/flutter-mark-square-64.png'),
+//                   ]),
+//             ],
+//           ),
+//         ])),
+//         const _ExampleCard(title: 'Item h'),
+//         const _ExampleCard(title: 'Item i'),
+//         const _ExampleCard(title: 'Item j'),
+//         const _ExampleCard(title: 'Item k'),
+//         const _ExampleCard(title: 'Item l'),
+//       ],
+//     );
+//   }
 // }
 
-// class SecondPage extends StatefulWidget {
-//   const SecondPage({super.key});
+// /// A filler card to show the video in a list of scrolling contents.
+// class _ExampleCard extends StatelessWidget {
+//   const _ExampleCard({required this.title});
+
+//   final String title;
 
 //   @override
-//   State<StatefulWidget> createState() => _SecondPageState();
+//   Widget build(BuildContext context) {
+//     return Card(
+//       child: Column(
+//         mainAxisSize: MainAxisSize.min,
+//         children: <Widget>[
+//           ListTile(
+//             leading: const Icon(Icons.airline_seat_flat_angled),
+//             title: Text(title),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.all(8.0),
+//             child: OverflowBar(
+//               alignment: MainAxisAlignment.end,
+//               spacing: 8.0,
+//               children: <Widget>[
+//                 TextButton(
+//                   child: const Text('BUY TICKETS'),
+//                   onPressed: () {
+//                     /* ... */
+//                   },
+//                 ),
+//                 TextButton(
+//                   child: const Text('SELL TICKETS'),
+//                   onPressed: () {
+//                     /* ... */
+//                   },
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
 // }
 
-// class _SecondPageState extends State<SecondPage> {
-//   List<ArbitrarySuggestionType> suggestions = [
-//     ArbitrarySuggestionType(4.7, "Minamishima",
-//         "https://media-cdn.tripadvisor.com/media/photo-p/0f/25/de/0c/photo1jpg.jpg"),
-//     ArbitrarySuggestionType(1.5, "The Meat & Wine Co Hawthorn East",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/12/ba/7d/4c/confit-cod-chorizo-red.jpg"),
-//     ArbitrarySuggestionType(3.4, "Florentino",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/12/fc/bb/11/from-the-street.jpg"),
-//     ArbitrarySuggestionType(4.3, "Syracuse Restaurant & Winebar Melbourne CBD",
-//         "https://media-cdn.tripadvisor.com/media/photo-p/07/ad/76/b0/the-gyoza-had-a-nice.jpg"),
-//     ArbitrarySuggestionType(1.1, "Geppetto Trattoria",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/0c/85/3d/cb/photo1jpg.jpg"),
-//     ArbitrarySuggestionType(3.4, "Cumulus Inc.",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/0e/21/a0/be/photo0jpg.jpg"),
-//     ArbitrarySuggestionType(2.2, "Chin Chin",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/0e/83/ec/07/triple-beef-triple-bacon.jpg"),
-//     ArbitrarySuggestionType(5.0, "Anchovy",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/07/e7/f6/8e/daneli-s-kosher-deli.jpg"),
-//     ArbitrarySuggestionType(4.7, "Sezar Restaurant",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/04/b8/23/d1/nevsky-russian-restaurant.jpg"),
-//     ArbitrarySuggestionType(2.6, "Tipo 00",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/11/17/67/8c/front-seats.jpg"),
-//     ArbitrarySuggestionType(3.4, "Coda",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/0d/b1/6a/84/photo0jpg.jpg"),
-//     ArbitrarySuggestionType(1.1, "Pastuso",
-//         "https://media-cdn.tripadvisor.com/media/photo-w/0a/d9/cf/52/photo4jpg.jpg"),
-//     ArbitrarySuggestionType(0.2, "San Telmo",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/0e/51/35/35/tempura-sashimi-combo.jpg"),
-//     ArbitrarySuggestionType(3.6, "Supernormal",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/0e/bc/63/69/mr-miyagi.jpg"),
-//     ArbitrarySuggestionType(4.4, "EZARD",
-//         "https://media-cdn.tripadvisor.com/media/photo-p/09/f2/83/15/photo0jpg.jpg"),
-//     ArbitrarySuggestionType(2.1, "Maha",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/10/f8/9e/af/20171013-205729-largejpg.jpg"),
-//     ArbitrarySuggestionType(4.2, "MoVida",
-//         "https://media-cdn.tripadvisor.com/media/photo-s/0e/1f/55/79/and-here-we-go.jpg")
+// class _ButterFlyAssetVideo extends StatefulWidget {
+//   @override
+//   _ButterFlyAssetVideoState createState() => _ButterFlyAssetVideoState();
+// }
+
+// class _ButterFlyAssetVideoState extends State<_ButterFlyAssetVideo> {
+//   late VideoPlayerController _controller;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = VideoPlayerController.asset('assets/videos/smile.mp4');
+
+//     _controller.addListener(() {
+//       setState(() {});
+//     });
+//     _controller.setLooping(true);
+//     _controller.initialize().then((_) => setState(() {}));
+//     _controller.play();
+//   }
+
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       child: Column(
+//         children: <Widget>[
+//           Container(
+//             padding: const EdgeInsets.only(top: 20.0),
+//           ),
+//           const Text('With assets mp4'),
+//           Container(
+//             padding: const EdgeInsets.all(20),
+//             child: AspectRatio(
+//               aspectRatio: _controller.value.aspectRatio,
+//               child: Stack(
+//                 alignment: Alignment.bottomCenter,
+//                 children: <Widget>[
+//                   VideoPlayer(_controller),
+//                   _ControlsOverlay(controller: _controller),
+//                   VideoProgressIndicator(_controller, allowScrubbing: true),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class _BumbleBeeRemoteVideo extends StatefulWidget {
+//   @override
+//   _BumbleBeeRemoteVideoState createState() => _BumbleBeeRemoteVideoState();
+// }
+
+// class _BumbleBeeRemoteVideoState extends State<_BumbleBeeRemoteVideo> {
+//   late VideoPlayerController _controller;
+
+//   Future<ClosedCaptionFile> _loadCaptions() async {
+//     final String fileContents = await DefaultAssetBundle.of(context)
+//         .loadString('assets/videos/smile.mp4');
+//     return WebVTTCaptionFile(
+//         fileContents); // For vtt files, use WebVTTCaptionFile
+//   }
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = VideoPlayerController.networkUrl(
+//       Uri.parse(
+//           'https://player.vimeo.com/progressive_redirect/playback/353536203/rendition/360p/file.mp4?loc=external&oauth2_token_id=1747418641&signature=cf5fd99098aa54fd5bd25a15e32a825289ff81cf4dfde6e41088ab847f59b4e1'),
+//       closedCaptionFile: _loadCaptions(),
+//       videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+//     );
+
+//     _controller.addListener(() {
+//       setState(() {});
+//     });
+//     _controller.setLooping(true);
+//     _controller.initialize();
+//   }
+
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       child: Column(
+//         children: <Widget>[
+//           Container(padding: const EdgeInsets.only(top: 20.0)),
+//           const Text('With remote mp4'),
+//           Container(
+//             padding: const EdgeInsets.all(20),
+//             child: AspectRatio(
+//               aspectRatio: _controller.value.aspectRatio,
+//               child: Stack(
+//                 alignment: Alignment.bottomCenter,
+//                 children: <Widget>[
+//                   VideoPlayer(_controller),
+//                   ClosedCaption(text: _controller.value.caption.text),
+//                   _ControlsOverlay(controller: _controller),
+//                   VideoProgressIndicator(_controller, allowScrubbing: true),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class _ControlsOverlay extends StatelessWidget {
+//   const _ControlsOverlay({required this.controller});
+
+//   static const List<Duration> _exampleCaptionOffsets = <Duration>[
+//     Duration(seconds: -10),
+//     Duration(seconds: -3),
+//     Duration(seconds: -1, milliseconds: -500),
+//     Duration(milliseconds: -250),
+//     Duration.zero,
+//     Duration(milliseconds: 250),
+//     Duration(seconds: 1, milliseconds: 500),
+//     Duration(seconds: 3),
+//     Duration(seconds: 10),
+//   ];
+//   static const List<double> _examplePlaybackRates = <double>[
+//     0.25,
+//     0.5,
+//     1.0,
+//     1.5,
+//     2.0,
+//     3.0,
+//     5.0,
+//     10.0,
 //   ];
 
-//   GlobalKey<AutoCompleteTextFieldState<ArbitrarySuggestionType>> key =
-//       GlobalKey<AutoCompleteTextFieldState<ArbitrarySuggestionType>>();
-
-//   AutoCompleteTextField<ArbitrarySuggestionType>? textField;
-
-//   ArbitrarySuggestionType? selected;
-
-//   _SecondPageState() {
-//     textField = AutoCompleteTextField<ArbitrarySuggestionType>(
-//       decoration: const InputDecoration(
-//           hintText: "Search Resturant:", suffixIcon: Icon(Icons.search)),
-//       itemSubmitted: (item) => setState(() => selected = item),
-//       key: key,
-//       suggestions: suggestions,
-//       itemBuilder: (context, suggestion) => Padding(
-//           padding: const EdgeInsets.all(8.0),
-//           child: ListTile(
-//               title: Text(suggestion.name),
-//               trailing: Text("Stars: ${suggestion.stars}"))),
-//       itemSorter: (a, b) => a.stars == b.stars
-//           ? 0
-//           : a.stars > b.stars
-//               ? -1
-//               : 1,
-//       itemFilter: (suggestion, input) =>
-//           suggestion.name.toLowerCase().startsWith(input.toLowerCase()),
-//     );
-//   }
+//   final VideoPlayerController controller;
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('AutoComplete TextField Demo Complex'),
-//       ),
-//       body: Column(children: [
-//         Padding(
-//             padding: const EdgeInsets.all(16.0),
-//             child: Container(child: textField)),
-//         Padding(
-//             padding: const EdgeInsets.fromLTRB(0.0, 64.0, 0.0, 0.0),
-//             child: Card(
-//                 child: selected != null
-//                     ? Column(children: [
-//                         ListTile(
-//                             title: Text(selected!.name),
-//                             trailing: Text("Rating: ${selected!.stars}/5")),
-//                         SizedBox(
-//                             width: 400.0,
-//                             height: 300.0,
-//                             child: Image(image: NetworkImage(selected!.imgURL)))
-//                       ])
-//                     : const Icon(Icons.cancel))),
-//       ]),
-//     );
-//   }
-// }
-
-// import 'package:flutter/material.dart';
-// import 'package:autocomplete_textfield/autocomplete_textfield.dart';
-
-// void main() => runApp(const MyApp());
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'TagItems Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const TagItemsPage(),
-//     );
-//   }
-// }
-
-// class TagItemsPage extends StatefulWidget {
-//   const TagItemsPage({super.key});
-
-//   @override
-//   State<TagItemsPage> createState() => _TagItemsPageState();
-// }
-
-// class _TagItemsPageState extends State<TagItemsPage> {
-//   List<String> tags = [];
-//   String currentText = '';
-//   GlobalKey<AutoCompleteTextFieldState<String>> key = GlobalKey();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     AutoCompleteTextField<String> textField = AutoCompleteTextField<String>(
-//       key: key,
-//       decoration: const InputDecoration(
-//         hintText: 'Add Tag',
-//         suffixIcon: Icon(Icons.add),
-//       ),
-//       controller: TextEditingController(text: currentText),
-//       suggestions: suggestions,
-//       clearOnSubmit: true,
-//       itemSubmitted: (text) {
-//         setState(() {
-//           if (text.isNotEmpty) {
-//             tags.add(text);
-//             currentText = '';
-//           }
-//         });
-//       },
-//       itemFilter: (item, query) {
-//         return item.toLowerCase().startsWith(query.toLowerCase());
-//       },
-//       itemSorter: (a, b) {
-//         return a.compareTo(b);
-//       },
-//       itemBuilder: (context, item) {
-//         return ListTile(
-//           title: Text(item),
-//         );
-//       },
-//     );
-
-//     Column body = Column(
-//       children: [
-//         ListTile(
-//           title: textField,
+//     return Stack(
+//       children: <Widget>[
+//         AnimatedSwitcher(
+//           duration: const Duration(milliseconds: 50),
+//           reverseDuration: const Duration(milliseconds: 200),
+//           child: controller.value.isPlaying
+//               ? const SizedBox.shrink()
+//               : const ColoredBox(
+//                   color: Colors.black26,
+//                   child: Center(
+//                     child: Icon(
+//                       Icons.play_arrow,
+//                       color: Colors.white,
+//                       size: 100.0,
+//                       semanticLabel: 'Play',
+//                     ),
+//                   ),
+//                 ),
+//         ),
+//         GestureDetector(
+//           onTap: () {
+//             controller.value.isPlaying ? controller.pause() : controller.play();
+//           },
+//         ),
+//         Align(
+//           alignment: Alignment.topLeft,
+//           child: PopupMenuButton<Duration>(
+//             initialValue: controller.value.captionOffset,
+//             tooltip: 'Caption Offset',
+//             onSelected: (Duration delay) {
+//               controller.setCaptionOffset(delay);
+//             },
+//             itemBuilder: (BuildContext context) {
+//               return <PopupMenuItem<Duration>>[
+//                 for (final Duration offsetDuration in _exampleCaptionOffsets)
+//                   PopupMenuItem<Duration>(
+//                     value: offsetDuration,
+//                     child: Text('${offsetDuration.inMilliseconds}ms'),
+//                   )
+//               ];
+//             },
+//             child: Padding(
+//               padding: const EdgeInsets.symmetric(
+//                 // Using less vertical padding as the text is also longer
+//                 // horizontally, so it feels like it would need more spacing
+//                 // horizontally (matching the aspect ratio of the video).
+//                 vertical: 12,
+//                 horizontal: 16,
+//               ),
+//               child: Text('${controller.value.captionOffset.inMilliseconds}ms'),
+//             ),
+//           ),
+//         ),
+//         Align(
+//           alignment: Alignment.topRight,
+//           child: PopupMenuButton<double>(
+//             initialValue: controller.value.playbackSpeed,
+//             tooltip: 'Playback speed',
+//             onSelected: (double speed) {
+//               controller.setPlaybackSpeed(speed);
+//             },
+//             itemBuilder: (BuildContext context) {
+//               return <PopupMenuItem<double>>[
+//                 for (final double speed in _examplePlaybackRates)
+//                   PopupMenuItem<double>(
+//                     value: speed,
+//                     child: Text('${speed}x'),
+//                   )
+//               ];
+//             },
+//             child: Padding(
+//               padding: const EdgeInsets.symmetric(
+//                 // Using less vertical padding as the text is also longer
+//                 // horizontally, so it feels like it would need more spacing
+//                 // horizontally (matching the aspect ratio of the video).
+//                 vertical: 12,
+//                 horizontal: 16,
+//               ),
+//               child: Text('${controller.value.playbackSpeed}x'),
+//             ),
+//           ),
 //         ),
 //       ],
 //     );
+//   }
+// }
 
-//     body.children.addAll(tags.map((tag) {
-//       return ListTile(
-//         title: Text(tag),
-//         trailing: IconButton(
-//           icon: const Icon(Icons.remove),
-//           onPressed: () {
-//             setState(() {
-//               tags.remove(tag);
-//             });
-//           },
-//         ),
-//       );
-//     }));
+// class _PlayerVideoAndPopPage extends StatefulWidget {
+//   @override
+//   _PlayerVideoAndPopPageState createState() => _PlayerVideoAndPopPageState();
+// }
 
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('TagItems Demo'),
-//       ),
-//       body: body,
-//     );
+// class _PlayerVideoAndPopPageState extends State<_PlayerVideoAndPopPage> {
+//   late VideoPlayerController _videoPlayerController;
+//   bool startedPlaying = false;
+
+//   @override
+//   void initState() {
+//     super.initState();
+
+//     _videoPlayerController =
+//         VideoPlayerController.asset('assets/Butterfly-209.mp4');
+//     _videoPlayerController.addListener(() {
+//       if (startedPlaying && !_videoPlayerController.value.isPlaying) {
+//         Navigator.pop(context);
+//       }
+//     });
 //   }
 
-//   List<String> suggestions = [
-//     "Vacation",
-//     "Hotels",
-//     "Burger",
-//     "Travel",
-//     "Food",
-//     "Beach",
-//     "Adventure",
-//     "Shopping",
-//     "Nature",
-//     "City",
-//     "Exploration",
-//     "Culture",
-//     "Family",
-//     "Friends",
-//   ];
+//   @override
+//   void dispose() {
+//     _videoPlayerController.dispose();
+//     super.dispose();
+//   }
+
+//   Future<bool> started() async {
+//     await _videoPlayerController.initialize();
+//     await _videoPlayerController.play();
+//     startedPlaying = true;
+//     return true;
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Material(
+//       child: Center(
+//         child: FutureBuilder<bool>(
+//           future: started(),
+//           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+//             if (snapshot.data ?? false) {
+//               return AspectRatio(
+//                 aspectRatio: _videoPlayerController.value.aspectRatio,
+//                 child: VideoPlayer(_videoPlayerController),
+//               );
+//             } else {
+//               return const Text('waiting for video to load');
+//             }
+//           },
+//         ),
+//       ),
+//     );
+//   }
 // }

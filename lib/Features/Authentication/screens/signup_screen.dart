@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:explore_larosa_mobile/Components/oauth_buttons.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/login_screen.dart';
-import 'package:explore_larosa_mobile/core.dart';
+import 'package:explore_larosa_mobile/lasora_core.dart';
 import 'package:explore_larosa_mobile/utils/constants/links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -448,7 +448,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
         if (response.statusCode == 201) {
           print(response.body);
-          Get.to(const Core());
+          Get.to(const LarosaCore());
           // print('response ${response.body}');
         } else {
           print(

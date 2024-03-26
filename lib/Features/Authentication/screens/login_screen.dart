@@ -6,7 +6,7 @@ import 'package:explore_larosa_mobile/Components/spiner.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/forgot_password.dart';
 import 'package:explore_larosa_mobile/Features/Authentication/screens/signup_screen.dart';
 import 'package:explore_larosa_mobile/Features/Onboarding/screens/account_type.dart';
-import 'package:explore_larosa_mobile/core.dart';
+import 'package:explore_larosa_mobile/lasora_core.dart';
 import 'package:explore_larosa_mobile/utils/constants/links.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -309,7 +309,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
         if (response.statusCode == 200) {
           Get.snackbar('Explore Larosa', 'Successful Login');
-          Get.offAll(const Core());
+          Get.offAll(const LarosaCore());
         }
         print(response.body);
       } catch (e) {
