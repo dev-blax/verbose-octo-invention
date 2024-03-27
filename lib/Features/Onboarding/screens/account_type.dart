@@ -50,7 +50,6 @@ class _AccountTypeState extends State<AccountType> {
               right: 20,
               child: GestureDetector(
                 onTap: () {
-                  // AccountTypeController.instance.toSignIn();
                   Get.put(AccountTypeController.instance.toSignIn());
                 },
                 child: const Row(
@@ -159,7 +158,9 @@ class _AccountTypeState extends State<AccountType> {
                     height: 65,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          elevation: 0, backgroundColor: Colors.transparent),
+                        elevation: 0,
+                        backgroundColor: Colors.transparent,
+                      ),
                       onPressed: () {
                         AccountTypeController.instance.toPersonalRegistration();
                       },

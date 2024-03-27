@@ -9,6 +9,7 @@ class BusinessSignupScreen extends StatefulWidget {
 
 class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
   List<String> dropdownItems = ['Tanzania', 'Kenya', 'Uganda', 'Rwanda'];
+
   String selectedValue = 'Tanzania';
 
   @override
@@ -19,48 +20,7 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
         Column(
           children: [
             // top image and overlay
-            SizedBox(
-              height: 300,
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image:
-                                AssetImage('assets/images/beautiful-dog.jpg'),
-                            fit: BoxFit.cover)),
-                  ),
-                  Positioned(
-                      bottom: 0,
-                      left: 0,
-                      top: 0,
-                      width: MediaQuery.of(context).size.width,
-                      child: ClipRRect(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.black.withOpacity(0.6),
-                                Colors.transparent
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                            ),
-                          ),
-                        ),
-                      )),
-                  const Positioned(
-                      bottom: 10,
-                      left: 10,
-                      child: Center(
-                        child: Text(
-                          'New Business Account',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ))
-                ],
-              ),
-            ),
+            const TopImageWithOverlay(),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -97,11 +57,19 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
                           });
                         },
                         decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 0,
+                            ),
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
+                            borderSide: const BorderSide(width: 0),
                           ),
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Colors.grey.withOpacity(.2),
                           //suffixIcon: const Icon(Iconsax.arrow_circle_down)
                         ),
                       ),
@@ -119,19 +87,32 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
                         'Business Name',
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 18),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                        ),
                       ),
                       const SizedBox(
                         height: 5,
                       ),
                       TextFormField(
                         decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.grey.withOpacity(0.4),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                                borderSide: const BorderSide(
-                                    width: 0, color: Colors.transparent))),
+                          filled: true,
+                          fillColor: Colors.grey.withOpacity(.2),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 0,
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: const BorderSide(
+                              width: 0,
+                              color: Colors.transparent,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -275,5 +256,59 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
         ),
       ],
     ));
+  }
+}
+
+class TopImageWithOverlay extends StatelessWidget {
+  const TopImageWithOverlay({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 300,
+      child: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  //image: AssetImage('assets/images/beautiful-dog.jpg'),
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      'https://images.pexels.com/photos/1181245/pexels-photo-1181245.jpeg?auto=compress&cs=tinysrgb&w=600')),
+            ),
+          ),
+          Positioned(
+              bottom: 0,
+              left: 0,
+              top: 0,
+              width: MediaQuery.of(context).size.width,
+              child: ClipRRect(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.black.withOpacity(0.6),
+                        Colors.transparent
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                  ),
+                ),
+              )),
+          const Positioned(
+              bottom: 10,
+              left: 10,
+              child: Center(
+                child: Text(
+                  'New Business Account',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+              ))
+        ],
+      ),
+    );
   }
 }

@@ -3,6 +3,8 @@ class SvgIconsPaths {
 
   static const String addOutline = 'assets/svg_icons/addOutline.svg';
 
+  static const String mailBold = 'assets/svg_icons/emailBold.svg';
+
   static const String chatBold = 'assets/svg_icons/messageBold.svg';
 
   static const String chatOutline = 'assets/svg_icons/messageOutline.svg';
